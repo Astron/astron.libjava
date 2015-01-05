@@ -1,4 +1,4 @@
-package astron.object;
+package main.java.astron.object;
 
 public class DistributedTestObject extends DistributedObject {
 

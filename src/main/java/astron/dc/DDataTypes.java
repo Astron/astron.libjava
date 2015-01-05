@@ -1,4 +1,4 @@
-package astron.dc;
+package main.java.astron.dc;
 
 public enum DDataTypes {
 

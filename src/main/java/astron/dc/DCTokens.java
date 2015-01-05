@@ -1,4 +1,4 @@
-package astron.dc;
+package main.java.astron.dc;
 
 import java.util.HashMap;
 import java.util.Map;

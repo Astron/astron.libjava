@@ -1,4 +1,4 @@
-package astron.connection;
+package main.java.astron.connection;
 
 public class MessageTypes {
 

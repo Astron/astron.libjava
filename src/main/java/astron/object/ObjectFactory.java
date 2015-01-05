@@ -1,10 +1,10 @@
-package astron.object;
+package main.java.astron.object;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import astron.connection.AstronClientRepository;
-import astron.dc.DClass;
+import main.java.astron.connection.AstronClientRepository;
+import main.java.astron.dc.DClass;
 
 public final class ObjectFactory {
 

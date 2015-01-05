@@ -1,4 +1,4 @@
-package astron.dc;
+package main.java.astron.dc;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,4 +1,4 @@
-package astron.connection;
+package main.java.astron.connection;
 
 import java.io.DataOutputStream;
 import java.io.DataInputStream;
@@ -8,8 +8,8 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import astron.datagram.Datagram;
-import astron.datagram.DatagramIterator;
+import main.java.astron.datagram.Datagram;
+import main.java.astron.datagram.DatagramIterator;
 
 public abstract class Connection implements Runnable {
 

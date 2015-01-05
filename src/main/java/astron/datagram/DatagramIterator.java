@@ -1,4 +1,4 @@
-package astron.datagram;
+package main.java.astron.datagram;
 
 public class DatagramIterator extends Datagram {
 

@@ -1,11 +1,11 @@
-package astron.datagram;
+package main.java.astron.datagram;
 
 import java.io.DataOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 
-import astron.dc.DDataTypes;
+import main.java.astron.dc.DDataTypes;
 
 public class Datagram {
 
