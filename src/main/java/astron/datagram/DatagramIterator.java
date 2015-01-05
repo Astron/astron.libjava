@@ -96,6 +96,12 @@ public class DatagramIterator {
         return value;
     }
 
+    public int getDoId() {
+        int value = this.buffer.getInt(this.offset);
+        this.offset += 4;
+        return value;
+    }
+
     public long getUint64() {
         long value = this.buffer.getLong(this.offset);
         this.offset += 8;

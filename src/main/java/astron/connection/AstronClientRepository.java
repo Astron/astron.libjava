@@ -108,7 +108,7 @@ public class AstronClientRepository extends Connection {
     private void handleObjectSetField(DatagramIterator datagram) {
 
         // Get the doId and the fieldId
-        int doId = datagram.getUint32();
+        int doId = datagram.getDoId();
         int fieldId = datagram.getUint16();
 
         // Get the DMethod from the DCFile
