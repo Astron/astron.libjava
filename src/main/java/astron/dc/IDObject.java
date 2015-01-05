@@ -2,8 +2,8 @@ package astron.dc;
 
 public interface IDObject {
 
-	public int getId();
-	public String getName();
-	public DObjectTypes getType();
-	
+    public int getId();
+    public String getName();
+    public DObjectTypes getType();
+
 }

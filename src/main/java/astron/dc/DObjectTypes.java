@@ -1,5 +1,5 @@
 package astron.dc;
 
 public enum DObjectTypes {
-	DClass, DMethod	
+    DClass, DMethod
 }
