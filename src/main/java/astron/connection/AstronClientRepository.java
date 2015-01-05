@@ -1,10 +1,10 @@
-package main.java.astron.connection;
+package astron.connection;
 
-import main.java.astron.datagram.Datagram;
-import main.java.astron.datagram.DatagramIterator;
-import main.java.astron.dc.DCFile;
-import main.java.astron.object.IDistributedObject;
-import main.java.astron.object.ObjectFactory;
+import astron.datagram.Datagram;
+import astron.datagram.DatagramIterator;
+import astron.dc.DCFile;
+import astron.object.IDistributedObject;
+import astron.object.ObjectFactory;
 
 public class AstronClientRepository extends Connection {
 

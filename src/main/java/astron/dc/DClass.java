@@ -1,11 +1,11 @@
-package main.java.astron.dc;
+package astron.dc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.astron.connection.MessageTypes;
-import main.java.astron.datagram.Datagram;
+import astron.connection.MessageTypes;
+import astron.datagram.Datagram;
 
 public final class DClass implements IDObject {
 

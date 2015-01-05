@@ -1,7 +1,7 @@
-package main.java.astron.object;
+package astron.object;
 
-import main.java.astron.connection.AstronClientRepository;
-import main.java.astron.dc.DClass;
+import astron.connection.AstronClientRepository;
+import astron.dc.DClass;
 
 public interface IDistributedObject {
 

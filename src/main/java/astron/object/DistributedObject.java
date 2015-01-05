@@ -1,8 +1,8 @@
-package main.java.astron.object;
+package astron.object;
 
-import main.java.astron.connection.AstronClientRepository;
-import main.java.astron.datagram.Datagram;
-import main.java.astron.dc.DClass;
+import astron.connection.AstronClientRepository;
+import astron.datagram.Datagram;
+import astron.dc.DClass;
 
 public class DistributedObject implements IDistributedObject {
 

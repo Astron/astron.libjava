@@ -1,6 +1,6 @@
-package main.java.astron.datagram;
+package astron.datagram;
 
-import main.java.astron.dc.DDataTypes;
+import astron.dc.DDataTypes;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
