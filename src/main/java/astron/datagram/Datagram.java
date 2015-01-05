@@ -9,7 +9,7 @@ import main.java.astron.dc.DDataTypes;
 
 public class Datagram {
 
-    protected ByteBuffer buffer;
+    private ByteBuffer buffer;
 
     /* Constructors */
 
