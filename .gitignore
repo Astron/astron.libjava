@@ -10,6 +10,11 @@ pom.xml.versionsBackup
 pom.xml.next
 release.properties
 
+# IntelliJ
+*.iml
+## Directory-based project format:
+.idea/
+
 # mac os x
 .DS_Store
 
