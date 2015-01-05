@@ -2,6 +2,17 @@
 *.project
 *.class
 
+# maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# mac os x
+.DS_Store
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
