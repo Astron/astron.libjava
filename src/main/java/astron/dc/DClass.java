@@ -7,7 +7,7 @@ import java.util.Map;
 import astron.connection.MessageTypes;
 import astron.datagram.Datagram;
 
-public final class DClass implements IDObject {
+public final class DClass {
 
     public String name;
     public int id;
@@ -89,10 +89,6 @@ public final class DClass implements IDObject {
 
     public String getName() {
         return this.name;
-    }
-
-    public DObjectTypes getType() {
-        return DObjectTypes.DClass;
     }
 
 }

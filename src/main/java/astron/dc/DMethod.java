@@ -2,7 +2,7 @@ package astron.dc;
 
 import java.util.ArrayList;
 
-public final class DMethod implements IDObject {
+public final class DMethod {
 
     public String name;
     public int id;
@@ -43,10 +43,6 @@ public final class DMethod implements IDObject {
 
     public String getName() {
         return this.name;
-    }
-
-    public DObjectTypes getType() {
-        return DObjectTypes.DMethod;
     }
 
 }
