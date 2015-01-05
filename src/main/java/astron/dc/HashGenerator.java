@@ -19,9 +19,9 @@ public class HashGenerator {
         public static PrimeNumberGenerator instance = new PrimeNumberGenerator();
 
         // Class
-        private ArrayList<Integer> primes = new ArrayList<Integer>();
+        private ArrayList<Integer> _primes = new ArrayList<Integer>();
         private PrimeNumberGenerator() {
-            primes.add(2);
+            _primes.add(2);
         }
 
         /**
@@ -29,26 +29,26 @@ public class HashGenerator {
          * @param n index of the prime starting at 0
          * @return the nth prime
          */
-        public int get(int n) {
+        public int get(final int n) {
             assert n >= 0;
             // ensure the arraylist has at least n of capacity
-            primes.ensureCapacity(n);
-            int candidate = primes.get(primes.size() - 1) + 1;
-            while (primes.size() <= n) {
+            _primes.ensureCapacity(n);
+            int candidate = _primes.get(_primes.size() - 1) + 1;
+            while (_primes.size() <= n) {
                 boolean maybePrime = true;
                 int j = 0;
-                while (maybePrime && primes.get(j) * primes.get(j) <= candidate) {
-                    if ((primes.get(j) * (candidate / primes.get(j))) == candidate) {
+                while (maybePrime && _primes.get(j) * _primes.get(j) <= candidate) {
+                    if ((_primes.get(j) * (candidate / _primes.get(j))) == candidate) {
                         maybePrime = false;
                     }
                     j++;
                 }
                 if (maybePrime) {
-                    primes.add(candidate);
+                    _primes.add(candidate);
                 }
                 candidate++;
             }
-            return primes.get(n);
+            return _primes.get(n);
         }
     }
 }
