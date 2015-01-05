@@ -20,4 +20,30 @@ public class HashGeneratorTest {
             assertEquals(SOME_PRIMES[i], HashGenerator.PrimeNumberGenerator.instance.get(i));
         }
     }
+
+    @Test
+    public void testHashGeneration() {
+        HashGenerator hasher = new HashGenerator();
+        int EXPECTED_HASH;
+
+        // basic test
+        EXPECTED_HASH = 0xFFF;
+        hasher.addInt(100);
+        hasher.addString("kcmp");
+        assertEquals(hasher.getHash(), EXPECTED_HASH);
+
+        // test prime wrapping
+        EXPECTED_HASH = 0xb37c3e8b;
+        for (int i = 0; i < 10000; i++) {
+            hasher.addInt(i);
+        }
+        assertEquals(hasher.getHash(), EXPECTED_HASH);
+
+        // now build a hash that uses the most significant bit of a 32bit uint
+        EXPECTED_HASH = 0xdc33d509;
+        for (int i = 99999; i < 100050; i++) {
+            hasher.addInt(i);
+        }
+        assertEquals(hasher.getHash(), EXPECTED_HASH);
+    }
 }
