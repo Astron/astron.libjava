@@ -53,9 +53,20 @@ public class DistributedObject implements IDistributedObject {
     }
 
     public void sendUpdate(String fieldName) {
-        this.dclass.clientFormatUpdate(fieldName);
+        Datagram datagram = this.dclass.clientFormatUpdate(fieldName, this.doId);
+        this.cr.send(datagram);
     }
 
+    public void sendUpdate(int fieldId, Object... args) {
+        Datagram datagram = this.dclass.clientFormatUpdate(fieldId, this.doId, args);
+        this.cr.send(datagram);
+    }
+
+    public void sendUpdate(int fieldId) {
+        Datagram datagram = this.dclass.clientFormatUpdate(fieldId, this.doId);
+        this.cr.send(datagram);
+    }
+    
     /* Getters And Setters */
 
     public void setDoId(int doId) {

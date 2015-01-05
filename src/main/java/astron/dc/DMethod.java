@@ -25,6 +25,14 @@ public final class DMethod implements IDObject {
         return this.args;
     }
 
+    public DDataTypes getArg(int index) {
+        return this.args.get(index);
+    }
+
+    public int getArgCount() {
+        return this.args.size();
+    }
+
     public void printInfo() {
         System.out.println(String.format("---DMethod---\nName: %s\nID: %s\nArgs: %s", this.name, this.id, this.args));
     }

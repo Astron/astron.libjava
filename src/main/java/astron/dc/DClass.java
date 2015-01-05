@@ -13,6 +13,7 @@ public final class DClass implements IDObject {
     public int id;
     public ArrayList<DMethod> methods = new ArrayList<DMethod>();
     public Map<String, DMethod> name2method = new HashMap<String, DMethod>();
+    public Map<Integer, DMethod> id2method = new HashMap<Integer, DMethod>();
     public ArrayList<DClass> parents = new ArrayList<DClass>();
 
     public DClass(String name, int id) {
@@ -32,6 +33,10 @@ public final class DClass implements IDObject {
         return this.name2method.get(name);
     }
 
+    public DMethod getMethod(int id) {
+        return this.id2method.get(id);
+    }
+
     public int getMethodId(String name) {
         return this.getMethod(name).getId();
     }
@@ -39,32 +44,36 @@ public final class DClass implements IDObject {
     public void addMethod(DMethod method) {
         this.methods.add(method);
         this.name2method.put(method.getName(), method);
+        this.id2method.put(method.getId(), method);
     }
 
-    public Datagram clientFormatUpdate(String fieldName) {
-        return new Datagram();
-    }
-
-    public Datagram clientFormatUpdate(String fieldName, int doId, Object... args) {
+    public Datagram clientFormatUpdate(String fieldName, int doId) {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_OBJECT_SET_FIELD);
         datagram.addUint32(doId);
         datagram.addUint16(this.getMethodId(fieldName));
+        return datagram;
+    }
 
-        ArrayList<DDataTypes> dataTypes = this.getMethod(fieldName).getArgs();
+    public Datagram clientFormatUpdate(String fieldName, int doId, Object... args) {
+        DMethod dmethod = this.getMethod(fieldName);
 
-        for (int i = 0; i < args.length; i++) {
-            Datagram.addDataType(datagram, dataTypes.get(i), args[i]);
+        Datagram datagram = new Datagram(MessageTypes.CLIENT_OBJECT_SET_FIELD);
+        datagram.addUint32(doId);
+        datagram.addUint16(dmethod.getId());
+
+        for (int i = 0; i < dmethod.getArgCount(); i++) {
+            Datagram.addDataType(datagram, dmethod.getArg(i), args[i]);
         }
 
         return datagram;
     }
 
-    public Datagram clientFormatUpdate(int fieldId) {
-        return new Datagram();
+    public Datagram clientFormatUpdate(int fieldId, int doId) {
+        return this.clientFormatUpdate(this.getMethod(fieldId).getName(), doId);
     }
 
-    public Datagram clientFormatUpdate(int fieldId, Object[] args) {
-        return new Datagram();
+    public Datagram clientFormatUpdate(int fieldId, int doId, Object... args) {
+        return this.clientFormatUpdate(this.getMethod(fieldId).getName(), doId, args);
     }
 
     public void printInfo() {
