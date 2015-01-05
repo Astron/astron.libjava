@@ -2,6 +2,7 @@ Astron Data Types in Java
 -------------------------
 
 Below is a table of how Astron datatypes are unpacked from the wire in Java.
+
 | Astron Data Type | Java Data Type |
 |------------------|----------------|
 | `int8` | `byte` |
