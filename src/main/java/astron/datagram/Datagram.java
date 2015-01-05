@@ -124,8 +124,26 @@ public class Datagram {
 
     public static void addDataType(Datagram datagram, DDataTypes dataType, Object value) {
         switch (dataType) {
+            case BOOL:
+                datagram.addBool((Boolean) value);
             case STRING:
                 datagram.addString((String) value);
+            case INT8:
+                datagram.addInt8((Integer) value);
+            case INT16:
+                datagram.addInt16((Integer) value);
+            case INT32:
+                datagram.addInt32((Integer) value);
+            case INT64:
+                datagram.addInt64((Integer) value);
+            case UINT8:
+                datagram.addUint8((Integer) value);
+            case UINT16:
+                datagram.addUint16((Integer) value);
+            case UINT32:
+                datagram.addUint32((Integer) value);
+            case UINT64:
+                datagram.addUint64((Integer) value);
             default:
                 break;
         }
