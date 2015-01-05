@@ -15,6 +15,7 @@ public class DCTokens {
     public static final String TYPEDEF = "typedef";
 
     public static final Map<String, DDataTypes> DATA_TYPES = new HashMap<String, DDataTypes>();
+    public static final Map<DDataTypes, Class<?>> DATA_CLASSES = new HashMap<DDataTypes, Class<?>>();
 
     static {
 
@@ -29,6 +30,17 @@ public class DCTokens {
         DATA_TYPES.put("uint16", DDataTypes.UINT16);
         DATA_TYPES.put("uint32", DDataTypes.UINT32);
         DATA_TYPES.put("uint64", DDataTypes.UINT64);
+
+        DATA_CLASSES.put(DDataTypes.STRING, String.class);
+        DATA_CLASSES.put(DDataTypes.BOOL, Boolean.class);
+        DATA_CLASSES.put(DDataTypes.INT8, Integer.class);
+        DATA_CLASSES.put(DDataTypes.INT16, Integer.class);
+        DATA_CLASSES.put(DDataTypes.INT32, Integer.class);
+        DATA_CLASSES.put(DDataTypes.INT64, Integer.class);
+        DATA_CLASSES.put(DDataTypes.UINT8, Integer.class);
+        DATA_CLASSES.put(DDataTypes.UINT16, Integer.class);
+        DATA_CLASSES.put(DDataTypes.UINT32, Integer.class);
+        DATA_CLASSES.put(DDataTypes.UINT64, Integer.class);
 
     }
 

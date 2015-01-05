@@ -3,8 +3,15 @@ package astron.connection;
 import astron.datagram.Datagram;
 import astron.datagram.DatagramIterator;
 import astron.dc.DCFile;
+import astron.dc.DCTokens;
+import astron.dc.DDataTypes;
+import astron.dc.DMethod;
 import astron.object.IDistributedObject;
 import astron.object.ObjectFactory;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.lang.reflect.Method;
 
 public class AstronClientRepository extends Connection {
 
@@ -63,6 +70,10 @@ public class AstronClientRepository extends Connection {
         this.send(datagram);
     }
 
+    public IDistributedObject getDo(int doId) {
+        return this.objectFactory.getDo(doId);
+    }
+
     public String getVersion() {
         return this.version;
     }
@@ -94,9 +105,58 @@ public class AstronClientRepository extends Connection {
         System.out.println("Handle hello response");
     }
 
+    private void handleObjectSetField(DatagramIterator datagram) {
+
+        // Get the doId and the fieldId
+        int doId = datagram.getUint32();
+        int fieldId = datagram.getUint16();
+
+        // Get the DMethod from the DCFile
+        DMethod dmethod = this.dcFile.getDMethod(fieldId);
+
+        // Create an ArrayList of the args and the argClasses
+        ArrayList<Object> args = new ArrayList<Object>();
+        ArrayList<Class<?>> argClasses = new ArrayList<Class<?>>();
+
+        for (int i = 0; i < dmethod.getArgCount(); i++) {
+            DDataTypes argType = dmethod.getArg(i);
+
+            args.add(DatagramIterator.getDataType(datagram, argType));
+            argClasses.add(DCTokens.DATA_CLASSES.get(argType));
+        }
+
+        // Get the DistributedObject
+        IDistributedObject dobject = this.getDo(doId);
+
+        try {
+
+            // Get the Method we need to invoke
+            Method method = dobject.getClass().getMethod(dmethod.getName(), argClasses.toArray(new Class[argClasses.size()]));
+
+            // Invoke the method
+            method.invoke(dobject, args.toArray(new Object[args.size()]));
+
+        } catch (NoSuchMethodException e) {
+
+            e.printStackTrace();
+
+        } catch (IllegalAccessException e) {
+
+            e.printStackTrace();
+
+        } catch (InvocationTargetException e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
     public void handleDatagram(DatagramIterator datagram, int messageType) {
         if (this.clientState == ClientStates.CONNECTING && messageType == MessageTypes.CLIENT_HELLO_RESP) {
             this.handleHelloResp();
+        } else if (messageType == MessageTypes.CLIENT_OBJECT_SET_FIELD) {
+            this.handleObjectSetField(datagram);
         }
     }
 

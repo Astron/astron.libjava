@@ -16,6 +16,11 @@ public final class ObjectFactory {
         this.cr = cr;
     }
 
+
+    public IDistributedObject getDo(int doId) {
+        return this.doId2do.get(doId);
+    }
+
     public IDistributedObject requestObject(int doId, String name) {
         // First, we need to get the DClass
         DClass dclass = this.cr.getDcFile().getDClass(name);

@@ -32,6 +32,10 @@ public class DCFile {
         return this.name2dclass.get(name);
     }
 
+    public DMethod getDMethod(int id) {
+        return this.id2dmethod.get(id);
+    }
+
     public void setImports(Map<String, String> imports) {
         this.imports = imports;
     }
