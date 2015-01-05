@@ -37,9 +37,9 @@ public class DCTokens {
         DATA_CLASSES.put(DDataTypes.INT16, Short.class);
         DATA_CLASSES.put(DDataTypes.INT32, Integer.class);
         DATA_CLASSES.put(DDataTypes.INT64, Long.class);
-        DATA_CLASSES.put(DDataTypes.UINT8, Integer.class);
+        DATA_CLASSES.put(DDataTypes.UINT8, Short.class);
         DATA_CLASSES.put(DDataTypes.UINT16, Integer.class);
-        DATA_CLASSES.put(DDataTypes.UINT32, Integer.class);
+        DATA_CLASSES.put(DDataTypes.UINT32, Long.class);
         DATA_CLASSES.put(DDataTypes.UINT64, Long.class);
 
     }

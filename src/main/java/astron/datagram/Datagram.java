@@ -70,43 +70,104 @@ public class Datagram {
     }
 
     public void addString(final String value) {
-        try {
-            this.addUint16(value.length());
-            for (char chr: value.toCharArray()) {
-                this.addChar(chr);
-            }
-        } catch (Exception e) { System.out.println(e.toString()); }
+        if (value.length() > 65535) {
+            throw new IllegalArgumentException("String is too long to be packed into a Datagram");
+        }
+        this.addUint16(value.length());
+        for (char chr : value.toCharArray()) {
+            this.addChar(chr);
+        }
     }
 
-    public void addInt8(final int value) {
-        _buffer.put((byte) value);
+    public void addInt8(final byte value) {
+        _buffer.put(value);
     }
 
-    public void addInt16(final int value) {
-        _buffer.putChar((char) value);
+    public void addInt16(final short value) {
+        _buffer.putShort(value);
     }
 
     public void addInt32(final int value) {
         _buffer.putInt(value);
     }
 
-    public void addInt64(final int value) {
+    public void addInt64(final long value) {
         _buffer.putLong(value);
     }
 
-    public void addUint8(final int value) {
-        _buffer.put((byte) value);
+    /**
+     * Add a uint8 to the datagram.
+     *
+     * This method accepts a single byte directly.
+     * @param value byte to append
+     */
+    public void addUint8(final byte value) {
+        _buffer.put(value);
     }
 
-    public void addUint16(final int value) {
-        _buffer.putChar((char) value);
+    /**
+     * Add a uint8 to the datagram.
+     *
+     * This method accepts a long such that a programmer may perform a call like "dg.addUint8(100)" without hassle.
+     * Since integral literals are of the type int when "L" is not suffixed, Java will promote the integer provided
+     * to a long when this method is called.
+     * @param value integral between 0 and 255 to pack into the Datagram as a uint8.
+     * @throws IllegalArgumentException if the provided value exceeds the maximum capacity of a uint8
+     */
+    public void addUint8(final long value) {
+        if (value < 0 || value > 255) {
+            throw new IllegalArgumentException("Provided value " + value + " is too large for a uint8");
+        }
+        addUint8((byte) value);
+    }
+
+    /**
+     * Add a uint16 to the datagram.
+     *
+     * This method directly accepts a short.
+     * @param value short to append
+     */
+    public void addUint16(final short value) {
+        _buffer.putShort(value);
+    }
+
+    /**
+     * Add a uint16 to the datagram.
+     *
+     * This is a convenience method in the same manner as the {@link #addUint8(long)} method.
+     * @param value integral between 0 and 65535 to pack into the Datagram as a uint16.
+     */
+    public void addUint16(final long value) {
+        if (value < 0 || value > 65535) {
+            throw new IllegalArgumentException("Provided value " + value + " is too large for a uint16");
+        }
+        addUint16((short) value);
     }
 
     public void addUint32(final int value) {
         _buffer.putInt(value);
     }
 
-    public void addUint64(final int value) {
+    /**
+     * Add a uint32 to the datagram.
+     *
+     * This is a convienence method in the same manner as the {@link #addUint8(long)} method.
+     * @param value integral between 0 and 4294967295
+     */
+    public void addUint32(final long value) {
+        if (value < 0 || value > 4294967295L) {
+            throw new IllegalArgumentException("Provided value " + value + " is too large for a uint32");
+        }
+        addUint16((int) value);
+    }
+
+    /**
+     * Add a uint64 to the datagram.
+     *
+     * Because Java's longest primitive type is the signed long, valid uint64s may be represented by Java as negative numbers.
+     * @param value long to append
+     */
+    public void addUint64(final long value) {
         _buffer.putLong(value);
     }
 
@@ -129,21 +190,22 @@ public class Datagram {
             case STRING:
                 datagram.addString((String) value);
             case INT8:
-                datagram.addInt8((Integer) value);
+                datagram.addInt8((Byte) value);
             case INT16:
-                datagram.addInt16((Integer) value);
+                datagram.addInt16((Short) value);
             case INT32:
                 datagram.addInt32((Integer) value);
             case INT64:
-                datagram.addInt64((Integer) value);
+                datagram.addInt64((Long) value);
+            // For uint8-uint32, use the convenience methods that take a long
             case UINT8:
-                datagram.addUint8((Integer) value);
+                datagram.addUint8((Long) value);
             case UINT16:
-                datagram.addUint16((Integer) value);
+                datagram.addUint16((Long) value);
             case UINT32:
-                datagram.addUint32((Integer) value);
+                datagram.addUint32((Long) value);
             case UINT64:
-                datagram.addUint64((Integer) value);
+                datagram.addUint64((Long) value);
             default:
                 break;
         }

@@ -54,14 +54,14 @@ public class DatagramIterator {
         return sb.toString();
     }
 
-    public int getInt8() {
-        int value = this.buffer.get(this.offset);
+    public byte getInt8() {
+        byte value = this.buffer.get(this.offset);
         this.offset += 1;
         return value;
     }
 
-    public int getInt16() {
-        int value = this.buffer.getChar(this.offset);
+    public short getInt16() {
+        short value = this.buffer.getShort(this.offset);
         this.offset += 2;
         return value;
     }
@@ -72,32 +72,32 @@ public class DatagramIterator {
         return value;
     }
 
-    public int getInt64() {
-        int value = (int) this.buffer.getLong(this.offset);
+    public long getInt64() {
+        long value = (int) this.buffer.getLong(this.offset);
         this.offset += 8;
         return value;
     }
 
-    public int getUint8() {
-        int value = this.buffer.get(this.offset);
+    public short getUint8() {
+        short value = this.buffer.get(this.offset);
         this.offset += 1;
         return value;
     }
 
     public int getUint16() {
-        int value = this.buffer.getChar(this.offset);
+        int value = this.buffer.getShort(this.offset);
         this.offset += 2;
         return value;
     }
 
-    public int getUint32() {
-        int value = this.buffer.getInt(this.offset);
+    public long getUint32() {
+        long value = this.buffer.getInt(this.offset);
         this.offset += 4;
         return value;
     }
 
-    public int getUint64() {
-        int value = (int) this.buffer.getLong(this.offset);
+    public long getUint64() {
+        long value = this.buffer.getLong(this.offset);
         this.offset += 8;
         return value;
     }
