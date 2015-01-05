@@ -9,26 +9,26 @@ import astron.dc.DDataTypes;
 
 public class Datagram {
 
-    private ByteBuffer buffer;
+    private ByteBuffer _buffer;
 
     /* Constructors */
 
     public Datagram() {
-        this.buffer = ByteBuffer.allocate(65535);
-        this.buffer.order(ByteOrder.LITTLE_ENDIAN);
+        _buffer = ByteBuffer.allocate(65535);
+        _buffer.order(ByteOrder.LITTLE_ENDIAN);
     }
 
-    public Datagram(byte[] bytes) {
-        this.buffer = ByteBuffer.allocate(bytes.length);
-        this.buffer.order(ByteOrder.LITTLE_ENDIAN);
-        this.buffer.put(bytes);
+    public Datagram(final byte[] bytes) {
+        _buffer = ByteBuffer.allocate(bytes.length);
+        _buffer.order(ByteOrder.LITTLE_ENDIAN);
+        _buffer.put(bytes);
     }
 
-    public Datagram(Datagram datagram) {
+    public Datagram(final Datagram datagram) {
         this(datagram.getBytes());
     }
 
-    public Datagram(int messageType) {
+    public Datagram(final int messageType) {
         this();
         this.addUint16(messageType);
     }
@@ -36,15 +36,15 @@ public class Datagram {
     /* Utility Functions */
 
     public int getLength() {
-        return this.buffer.position();
+        return _buffer.position();
     }
 
     public byte[] getBytes() {
-        return Arrays.copyOf(this.buffer.array(), this.buffer.position());
+        return Arrays.copyOf(_buffer.array(), _buffer.position());
     }
 
     public byte[] toArray() {
-        return this.buffer.array();
+        return _buffer.array();
     }
 
     public String toString() {
@@ -53,11 +53,11 @@ public class Datagram {
 
     /* Data Types */
 
-    public void addByte(byte value) {
-        this.buffer.put(value);
+    public void addByte(final byte value) {
+        _buffer.put(value);
     }
 
-    public void addBool(boolean value) {
+    public void addBool(final boolean value) {
         if (value) {
             this.addUint8(1);
         } else {
@@ -65,11 +65,11 @@ public class Datagram {
         }
     }
 
-    public void addChar(char value) {
-        this.buffer.put((byte) value);
+    public void addChar(final char value) {
+        _buffer.put((byte) value);
     }
 
-    public void addString(String value) {
+    public void addString(final String value) {
         try {
             this.addUint16(value.length());
             for (char chr: value.toCharArray()) {
@@ -78,41 +78,41 @@ public class Datagram {
         } catch (Exception e) { System.out.println(e.toString()); }
     }
 
-    public void addInt8(int value) {
-        this.buffer.put((byte) value);
+    public void addInt8(final int value) {
+        _buffer.put((byte) value);
     }
 
-    public void addInt16(int value) {
-        this.buffer.putChar((char) value);
+    public void addInt16(final int value) {
+        _buffer.putChar((char) value);
     }
 
-    public void addInt32(int value) {
-        this.buffer.putInt(value);
+    public void addInt32(final int value) {
+        _buffer.putInt(value);
     }
 
-    public void addInt64(int value) {
-        this.buffer.putLong(value);
+    public void addInt64(final int value) {
+        _buffer.putLong(value);
     }
 
-    public void addUint8(int value) {
-        this.buffer.put((byte) value);
+    public void addUint8(final int value) {
+        _buffer.put((byte) value);
     }
 
-    public void addUint16(int value) {
-        this.buffer.putChar((char) value);
+    public void addUint16(final int value) {
+        _buffer.putChar((char) value);
     }
 
-    public void addUint32(int value) {
-        this.buffer.putInt(value);
+    public void addUint32(final int value) {
+        _buffer.putInt(value);
     }
 
-    public void addUint64(int value) {
-        this.buffer.putLong(value);
+    public void addUint64(final int value) {
+        _buffer.putLong(value);
     }
 
     /* Writing to a DataOutputStream */
 
-    public void writeTo(DataOutputStream output) {
+    public void writeTo(final DataOutputStream output) {
         try {
             ByteBuffer data = ByteBuffer.allocate(this.getLength() + 2);
             data.order(ByteOrder.LITTLE_ENDIAN);
@@ -122,7 +122,7 @@ public class Datagram {
         } catch (Exception e) { System.out.println(e.toString()); }
     }
 
-    public static void addDataType(Datagram datagram, DDataTypes dataType, Object value) {
+    public static void addDataType(final Datagram datagram, final DDataTypes dataType, final Object value) {
         switch (dataType) {
             case BOOL:
                 datagram.addBool((Boolean) value);
