@@ -9,6 +9,12 @@
   <url>https://github.com/Astron/astron.libjava</url>
   <description>Client and Server libraries for Astron, written in Java.</description>
   <dependencies>
+    <!-- Guava has utilities to help us handle bytes and primitives -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>18.0</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
