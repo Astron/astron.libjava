@@ -10,13 +10,13 @@ public class DatagramIterator {
     private int _offset = 0;
     private ByteBuffer _buffer;
 
-    public DatagramIterator(byte[] bytes) {
+    public DatagramIterator(final byte[] bytes) {
         _buffer = ByteBuffer.allocate(bytes.length);
         _buffer.order(ByteOrder.LITTLE_ENDIAN);
         _buffer.put(bytes);
     }
 
-    public DatagramIterator(Datagram datagram) {
+    public DatagramIterator(final Datagram datagram) {
         this(datagram.getBytes());
     }
 
@@ -112,7 +112,7 @@ public class DatagramIterator {
         return _offset;
     }
 
-    public static Object getDataType(DatagramIterator datagram, DDataTypes dataType) {
+    public static Object getDataType(final DatagramIterator datagram, final DDataTypes dataType) {
         switch (dataType) {
             case BOOL:
                 return datagram.getBool();
