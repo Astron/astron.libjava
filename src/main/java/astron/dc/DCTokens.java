@@ -30,6 +30,8 @@ public class DCTokens {
         DATA_TYPES.put("uint16", DDataTypes.UINT16);
         DATA_TYPES.put("uint32", DDataTypes.UINT32);
         DATA_TYPES.put("uint64", DDataTypes.UINT64);
+        DATA_TYPES.put("float32", DDataTypes.FLOAT32);
+        DATA_TYPES.put("float64", DDataTypes.FLOAT64);
 
         DATA_CLASSES.put(DDataTypes.STRING, String.class);
         DATA_CLASSES.put(DDataTypes.BOOL, Boolean.class);
@@ -41,6 +43,8 @@ public class DCTokens {
         DATA_CLASSES.put(DDataTypes.UINT16, Integer.class);
         DATA_CLASSES.put(DDataTypes.UINT32, Long.class);
         DATA_CLASSES.put(DDataTypes.UINT64, Long.class);
+        DATA_CLASSES.put(DDataTypes.FLOAT32, Float.class);
+        DATA_CLASSES.put(DDataTypes.FLOAT64, Double.class);
 
     }
 

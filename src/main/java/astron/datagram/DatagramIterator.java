@@ -108,6 +108,18 @@ public class DatagramIterator {
         return value;
     }
 
+    public float getFloat32() {
+        float value = _buffer.getFloat(_offset);
+        _offset += 4;
+        return value;
+    }
+
+    public double getFloat64() {
+        double value = _buffer.getDouble(_offset);
+        _offset += 8;
+        return value;
+    }
+
     public int getOffset() {
         return _offset;
     }
@@ -134,6 +146,10 @@ public class DatagramIterator {
                 return datagram.getUint32();
             case UINT64:
                 return datagram.getUint64();
+            case FLOAT32:
+                return datagram.getFloat32();
+            case FLOAT64:
+                return datagram.getFloat64();
             default:
                 return null;
         }

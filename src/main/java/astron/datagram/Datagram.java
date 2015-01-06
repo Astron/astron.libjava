@@ -171,6 +171,24 @@ public class Datagram {
         _buffer.putLong(value);
     }
 
+    /**
+     * Add a 32-bit (single precision) floating point number to the datagram.
+     *
+     * @param value float to append
+     */
+    public void addFloat32(final float value) {
+        _buffer.putFloat(value);
+    }
+
+    /**
+     * Add a 64-bit (double precision) floating point number to the datagram.
+     *
+     * @param value double to append
+     */
+    public void addFloat64(final double value) {
+        _buffer.putDouble(value);
+    }
+
     /* Writing to a DataOutputStream */
 
     public void writeTo(final DataOutputStream output) {
