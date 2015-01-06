@@ -13,39 +13,39 @@ import astron.datagram.DatagramIterator;
 
 public abstract class Connection implements Runnable {
 
-    private final String address;
-    private final int port;
-    private boolean connected;
+    private final String _address;
+    private final int _port;
+    private boolean _connected;
 
-    private Socket socket;
-    private DataInputStream inputStream;
-    private DataOutputStream outputStream;
+    private Socket _socket;
+    private DataInputStream _inputStream;
+    private DataOutputStream _outputStream;
 
-    private boolean polling;
-    private Thread thread;
+    private boolean _polling;
+    private Thread _thread;
 
     public Connection(String address, int port) {
-        this.address = address;
-        this.port = port;
+        _address = address;
+        _port = port;
 
-        this.connected = true;
+        _connected = true;
 
         try {
 
-            this.socket = new Socket(this.address, this.port);
+            _socket = new Socket(_address, _port);
 
-            this.inputStream = new DataInputStream(this.socket.getInputStream());
-            this.outputStream = new DataOutputStream(this.socket.getOutputStream());
+            _inputStream = new DataInputStream(_socket.getInputStream());
+            _outputStream = new DataOutputStream(_socket.getOutputStream());
 
         } catch (UnknownHostException e) {
 
             this.handleUnknownHost(e);
-            this.connected = false;
+            _connected = false;
 
         } catch (IOException e) {
 
             this.handleException(e);
-            this.connected = false;
+            _connected = false;
 
         }
     }
@@ -56,14 +56,14 @@ public abstract class Connection implements Runnable {
 
     public void send(byte[] bytes) {
         try {
-            this.outputStream.write(bytes);
+            _outputStream.write(bytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void handleUnknownHost(Exception e) {
-        System.out.println(String.format("Unknown host: %s:%d", this.address, this.port));
+        System.out.println(String.format("Unknown host: %s:%d", _address, _port));
     }
 
     public void handleException(Exception e) {
@@ -71,39 +71,39 @@ public abstract class Connection implements Runnable {
     }
 
     public boolean isConnected() {
-        return this.connected;
+        return _connected;
     }
 
     public String getAddress() {
-        return this.address;
+        return _address;
     }
 
     public int getPort() {
-        return this.port;
+        return _port;
     }
 
     public DataInputStream getInputStream() {
-        return this.inputStream;
+        return _inputStream;
     }
 
     public DataOutputStream getOutputStream() {
-        return this.outputStream;
+        return _outputStream;
     }
 
     public abstract void handleDatagram(DatagramIterator datagram, int messageType);
 
     public void startPolling() {
-        if(this.polling) return;
-        this.polling = true;
-        this.thread = new Thread(this);
-        this.thread.start();
+        if(_polling) return;
+        _polling = true;
+        _thread = new Thread(this);
+        _thread.start();
     }
 
     public void stopPolling() {
-        if(!this.polling) return;
-        this.polling = false;
+        if(!_polling) return;
+        _polling = false;
         try {
-            this.thread.join();
+            _thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -116,7 +116,7 @@ public abstract class Connection implements Runnable {
 
                 // Get the lengthHeader of our datagram
                 byte[] lengthHeader = new byte[2];
-                this.inputStream.readFully(lengthHeader);
+                _inputStream.readFully(lengthHeader);
 
                 // Read the bytes
                 ByteBuffer lengthBuffer = ByteBuffer.allocate(2);
@@ -126,7 +126,7 @@ public abstract class Connection implements Runnable {
 
                 // Get the remaining data
                 byte[] data = new byte[length];
-                this.inputStream.readFully(data);
+                _inputStream.readFully(data);
 
                 // Create a datagram
                 DatagramIterator datagram = new DatagramIterator(data);
@@ -137,7 +137,11 @@ public abstract class Connection implements Runnable {
                 // Handle the datagram
                 this.handleDatagram(datagram, messageType);
 
-            } catch (Exception e) { System.out.println(e.toString()); }
+            } catch (Exception e) {
+
+                System.out.println(e.toString());
+
+            }
 
         }
     }

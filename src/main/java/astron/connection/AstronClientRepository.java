@@ -15,19 +15,19 @@ import java.lang.reflect.Method;
 
 public class AstronClientRepository extends Connection {
 
-    private final String version;
-    private final DCFile dcFile;
-    private final ObjectFactory objectFactory;
+    private final String _version;
+    private final DCFile _dcFile;
+    private final ObjectFactory _objectFactory;
 
-    protected int clientState = ClientStates.CONNECTING;
+    protected int _clientState = ClientStates.CONNECTING;
 
     public AstronClientRepository(String address, int port, String version, DCFile dcFile) {
         super(address, port);
 
-        this.objectFactory = new ObjectFactory(this);
+        _objectFactory = new ObjectFactory(this);
 
-        this.version = version;
-        this.dcFile = dcFile;
+        _version = version;
+        _dcFile = dcFile;
 
         if (this.isConnected()) {
             this.sendHello();
@@ -35,7 +35,7 @@ public class AstronClientRepository extends Connection {
     }
 
     public IDistributedObject generateGlobalObject(int doId, String dclassName) {
-        return this.objectFactory.requestObject(doId, dclassName);
+        return _objectFactory.requestObject(doId, dclassName);
     }
 
     public void addInterest(int parentId, int zoneId) {
@@ -71,33 +71,33 @@ public class AstronClientRepository extends Connection {
     }
 
     public IDistributedObject getDo(int doId) {
-        return this.objectFactory.getDo(doId);
+        return _objectFactory.getDo(doId);
     }
 
     public String getVersion() {
-        return this.version;
+        return _version;
     }
 
     public int getDcHash() {
-        return this.dcFile.getHash();
+        return _dcFile.getHash();
     }
 
     public DCFile getDcFile() {
-        return this.dcFile;
+        return _dcFile;
     }
 
     public int getClientState() {
-        return this.clientState;
+        return _clientState;
     }
 
     public void setClientState(int clientState) {
-        this.clientState = clientState;
+        _clientState = clientState;
     }
 
     private void sendHello() {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_HELLO);
         datagram.addUint32(this.getDcHash());
-        datagram.addString(this.version);
+        datagram.addString(_version);
         this.send(datagram);
     }
 
@@ -112,7 +112,7 @@ public class AstronClientRepository extends Connection {
         int fieldId = datagram.getUint16();
 
         // Get the DMethod from the DCFile
-        DMethod dmethod = this.dcFile.getDMethod(fieldId);
+        DMethod dmethod = _dcFile.getDMethod(fieldId);
 
         // Create an ArrayList of the args and the argClasses
         ArrayList<Object> args = new ArrayList<Object>();
@@ -153,7 +153,7 @@ public class AstronClientRepository extends Connection {
     }
 
     public void handleDatagram(DatagramIterator datagram, int messageType) {
-        if (this.clientState == ClientStates.CONNECTING && messageType == MessageTypes.CLIENT_HELLO_RESP) {
+        if (_clientState == ClientStates.CONNECTING && messageType == MessageTypes.CLIENT_HELLO_RESP) {
             this.handleHelloResp();
         } else if (messageType == MessageTypes.CLIENT_OBJECT_SET_FIELD) {
             this.handleObjectSetField(datagram);
