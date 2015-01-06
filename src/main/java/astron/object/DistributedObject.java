@@ -1,6 +1,6 @@
 package astron.object;
 
-import astron.connection.AstronClientRepository;
+import astron.client.AstronClientRepository;
 import astron.datagram.Datagram;
 import astron.dc.DClass;
 

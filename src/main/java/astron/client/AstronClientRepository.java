@@ -1,5 +1,8 @@
-package astron.connection;
+package astron.client;
 
+import astron.client.ClientState;
+import astron.connection.Connection;
+import astron.connection.MessageTypes;
 import astron.datagram.Datagram;
 import astron.datagram.DatagramIterator;
 import astron.dc.DCFile;
@@ -19,7 +22,7 @@ public class AstronClientRepository extends Connection {
     private final DCFile _dcFile;
     private final ObjectFactory _objectFactory;
 
-    protected int _clientState = ClientStates.CONNECTING;
+    protected ClientState _clientState = ClientState.CONNECTING;
 
     public AstronClientRepository(final String address, final int port, final String version, final DCFile dcFile) {
         super(address, port);
@@ -86,11 +89,11 @@ public class AstronClientRepository extends Connection {
         return _dcFile;
     }
 
-    public int getClientState() {
+    public ClientState getClientState() {
         return _clientState;
     }
 
-    public void setClientState(final int clientState) {
+    public void setClientState(final ClientState clientState) {
         _clientState = clientState;
     }
 
@@ -153,7 +156,7 @@ public class AstronClientRepository extends Connection {
     }
 
     public void handleDatagram(final DatagramIterator datagram, final int messageType) {
-        if (_clientState == ClientStates.CONNECTING && messageType == MessageTypes.CLIENT_HELLO_RESP) {
+        if (_clientState == ClientState.CONNECTING && messageType == MessageTypes.CLIENT_HELLO_RESP) {
             this.handleHelloResp();
         } else if (messageType == MessageTypes.CLIENT_OBJECT_SET_FIELD) {
             this.handleObjectSetField(datagram);

@@ -3,7 +3,7 @@ package astron.object;
 import java.util.HashMap;
 import java.util.Map;
 
-import astron.connection.AstronClientRepository;
+import astron.client.AstronClientRepository;
 import astron.dc.DClass;
 
 public final class ObjectFactory {
