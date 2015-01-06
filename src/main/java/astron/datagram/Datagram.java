@@ -158,7 +158,7 @@ public class Datagram {
         if (value < 0 || value > 4294967295L) {
             throw new IllegalArgumentException("Provided value " + value + " is too large for a uint32");
         }
-        addUint16((int) value);
+        addUint32((int) value);
     }
 
     /**
