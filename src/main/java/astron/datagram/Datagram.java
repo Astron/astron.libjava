@@ -70,7 +70,7 @@ public class Datagram {
     }
 
     public void addString(final String value) {
-        if (value.length() > 65535) {
+        if (value.length() > UnsignedNumbers.UINT16_MAX) {
             throw new IllegalArgumentException("String is too long to be packed into a Datagram");
         }
         this.addUint16(value.length());
@@ -111,14 +111,12 @@ public class Datagram {
      * This method accepts a long such that a programmer may perform a call like "dg.addUint8(100)" without hassle.
      * Since integral literals are of the type int when "L" is not suffixed, Java will promote the integer provided
      * to a long when this method is called.
-     * @param value integral between 0 and 255 to pack into the Datagram as a uint8.
+     * @param value integral between 0 and {@link astron.datagram.UnsignedNumbers#UINT8_MAX} to pack into the Datagram as a uint8.
      * @throws IllegalArgumentException if the provided value exceeds the maximum capacity of a uint8
+     * @see astron.datagram.UnsignedNumbers
      */
     public void addUint8(final long value) {
-        if (value < 0 || value > 255) {
-            throw new IllegalArgumentException("Provided value " + value + " is too large for a uint8");
-        }
-        addUint8((byte) value);
+        addUint8(UnsignedNumbers.checkedUint8Cast(value));
     }
 
     /**
@@ -135,15 +133,20 @@ public class Datagram {
      * Add a uint16 to the datagram.
      *
      * This is a convenience method in the same manner as the {@link #addUint8(long)} method.
-     * @param value integral between 0 and 65535 to pack into the Datagram as a uint16.
+     * @param value integral between 0 and {@link astron.datagram.UnsignedNumbers#UINT16_MAX} to pack into the Datagram as a uint16.
+     * @throws IllegalArgumentException if the provided value exceeds the maximum capacity of a uint16
+     * @see astron.datagram.UnsignedNumbers
      */
     public void addUint16(final long value) {
-        if (value < 0 || value > 65535) {
-            throw new IllegalArgumentException("Provided value " + value + " is too large for a uint16");
-        }
-        addUint16((short) value);
+        addUint16(UnsignedNumbers.checkedUint16Cast(value));
     }
 
+    /**
+     * Add a uint32 to the datagram.
+     *
+     * This method directly accepts an int.
+     * @param value int to append
+     */
     public void addUint32(final int value) {
         _buffer.putInt(value);
     }
@@ -151,13 +154,12 @@ public class Datagram {
     /**
      * Add a uint32 to the datagram.
      *
-     * This is a convienence method in the same manner as the {@link #addUint8(long)} method.
-     * @param value integral between 0 and 4294967295
+     * This is a convenience method in the same manner as the {@link #addUint8(long)} method.
+     * @param value integral between 0 and {@link astron.datagram.UnsignedNumbers#UINT32_MAX} to pack into the Datagram as a uint32.
+     * @throws IllegalArgumentException if the provided value exceeds the maximum capacity of a uint16
+     * @see astron.datagram.UnsignedNumbers
      */
     public void addUint32(final long value) {
-        if (value < 0 || value > 4294967295L) {
-            throw new IllegalArgumentException("Provided value " + value + " is too large for a uint32");
-        }
         addUint32((int) value);
     }
 
@@ -169,6 +171,15 @@ public class Datagram {
      */
     public void addUint64(final long value) {
         _buffer.putLong(value);
+    }
+
+    /**
+     * Add a wrapped uint64 to the datagram.
+     * @param value Wrapped uint64 to append to the datagram
+     * @see astron.datagram.Uint64
+     */
+    public void addUint64(final Uint64 value) {
+        _buffer.putLong(value.getValue());
     }
 
     /**
