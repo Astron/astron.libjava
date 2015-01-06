@@ -8,28 +8,27 @@ import astron.dc.DClass;
 
 public final class ObjectFactory {
 
-    private final AstronClientRepository cr;
+    private final AstronClientRepository _cr;
 
-    private final Map<Integer, IDistributedObject> doId2do = new HashMap<Integer, IDistributedObject>();
+    private final Map<Integer, IDistributedObject> _doId2do = new HashMap<Integer, IDistributedObject>();
 
-    public ObjectFactory(AstronClientRepository cr) {
-        this.cr = cr;
+    public ObjectFactory(final AstronClientRepository cr) {
+        _cr = cr;
     }
 
-
-    public IDistributedObject getDo(int doId) {
-        return this.doId2do.get(doId);
+    public IDistributedObject getDo(final int doId) {
+        return _doId2do.get(doId);
     }
 
-    public IDistributedObject requestObject(int doId, String name) {
+    public IDistributedObject requestObject(final int doId, final String name) {
         // First, we need to get the DClass
-        DClass dclass = this.cr.getDcFile().getDClass(name);
+        DClass dclass = _cr.getDcFile().getDClass(name);
 
         // Now, we can load in the object
         try {
 
             // Look up the class
-            Class<?> doclass = Class.forName(this.cr.getDcFile().lookupImport(dclass));
+            Class<?> doclass = Class.forName(_cr.getDcFile().lookupImport(dclass));
 
             IDistributedObject dobject;
 
@@ -39,20 +38,31 @@ public final class ObjectFactory {
                 dobject = (IDistributedObject) doclass.newInstance();
 
                 // Set some needed variables
-                dobject.setCR(this.cr);
+                dobject.setCR(_cr);
                 dobject.setDoId(doId);
                 dobject.setDClass(dclass);
 
                 // Add it to the doId2do
-                this.doId2do.put(doId, dobject);
+                _doId2do.put(doId, dobject);
 
                 // We are done, return the new IDistributedObject
                 return dobject;
 
-            } catch (InstantiationException e) { e.printStackTrace();
-            } catch (IllegalAccessException e) { e.printStackTrace(); }
+            } catch (InstantiationException e) {
 
-        } catch (ClassNotFoundException e) { e.printStackTrace(); }
+                e.printStackTrace();
+
+            } catch (IllegalAccessException e) {
+
+                e.printStackTrace();
+
+            }
+
+        } catch (ClassNotFoundException e) {
+
+            e.printStackTrace();
+
+        }
 
         return null;
     }

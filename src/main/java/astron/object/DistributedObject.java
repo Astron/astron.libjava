@@ -6,91 +6,91 @@ import astron.dc.DClass;
 
 public class DistributedObject implements IDistributedObject {
 
-    public int doId;
-    public AstronClientRepository cr;
-    public DClass dclass;
+    private int _doId;
+    private AstronClientRepository _cr;
+    private DClass _dclass;
 
     /* Constructors */
 
     public DistributedObject() {}
 
-    public DistributedObject(AstronClientRepository cr) {
-        this.cr = cr;
+    public DistributedObject(final AstronClientRepository cr) {
+        _cr = cr;
     }
 
-    public DistributedObject(int doId) {
-        this.doId = doId;
+    public DistributedObject(final int doId) {
+        _doId = doId;
     }
 
-    public DistributedObject(DClass dclass) {
-        this.dclass = dclass;
+    public DistributedObject(final DClass dclass) {
+        _dclass = dclass;
     }
 
-    public DistributedObject(AstronClientRepository cr, int doId) {
-        this.cr = cr;
-        this.doId = doId;
+    public DistributedObject(final AstronClientRepository cr, final int doId) {
+        _cr = cr;
+        _doId = doId;
     }
 
-    public DistributedObject(AstronClientRepository cr, DClass dclass) {
-        this.cr = cr;
-        this.dclass = dclass;
+    public DistributedObject(final AstronClientRepository cr, final DClass dclass) {
+        _cr = cr;
+        _dclass = dclass;
     }
 
-    public DistributedObject(int doId, DClass dclass) {
-        this.doId = doId;
-        this.dclass = dclass;
+    public DistributedObject(final int doId, final DClass dclass) {
+        _doId = doId;
+        _dclass = dclass;
     }
 
-    public DistributedObject(AstronClientRepository cr, int doId, DClass dclass) {
-        this.cr = cr;
-        this.doId = doId;
-        this.dclass = dclass;
+    public DistributedObject(final AstronClientRepository cr, final int doId, final DClass dclass) {
+        _cr = cr;
+        _doId = doId;
+        _dclass = dclass;
     }
 
-    public void sendUpdate(String fieldName, Object... args) {
-        Datagram datagram = this.dclass.clientFormatUpdate(fieldName, this.doId, args);
-        this.cr.send(datagram);
+    public void sendUpdate(final String fieldName, final Object... args) {
+        Datagram datagram = _dclass.clientFormatUpdate(fieldName, _doId, args);
+        _cr.send(datagram);
     }
 
-    public void sendUpdate(String fieldName) {
-        Datagram datagram = this.dclass.clientFormatUpdate(fieldName, this.doId);
-        this.cr.send(datagram);
+    public void sendUpdate(final String fieldName) {
+        Datagram datagram = _dclass.clientFormatUpdate(fieldName, _doId);
+        _cr.send(datagram);
     }
 
-    public void sendUpdate(int fieldId, Object... args) {
-        Datagram datagram = this.dclass.clientFormatUpdate(fieldId, this.doId, args);
-        this.cr.send(datagram);
+    public void sendUpdate(final int fieldId, final Object... args) {
+        Datagram datagram = _dclass.clientFormatUpdate(fieldId, _doId, args);
+        _cr.send(datagram);
     }
 
-    public void sendUpdate(int fieldId) {
-        Datagram datagram = this.dclass.clientFormatUpdate(fieldId, this.doId);
-        this.cr.send(datagram);
+    public void sendUpdate(final int fieldId) {
+        Datagram datagram = _dclass.clientFormatUpdate(fieldId, _doId);
+        _cr.send(datagram);
     }
     
     /* Getters And Setters */
 
-    public void setDoId(int doId) {
-        this.doId = doId;
+    public void setDoId(final int doId) {
+        _doId = doId;
     }
 
     public int getDoId() {
-        return this.doId;
+        return _doId;
     }
 
-    public void setCR(AstronClientRepository cr) {
-        this.cr = cr;
+    public void setCR(final AstronClientRepository cr) {
+        _cr = cr;
     }
 
     public AstronClientRepository getCR() {
-        return this.cr;
+        return _cr;
     }
 
-    public void setDClass(DClass dclass) {
-        this.dclass = dclass;
+    public void setDClass(final DClass dclass) {
+        _dclass = dclass;
     }
 
     public DClass getDClass() {
-        return this.dclass;
+        return _dclass;
     }
 
 }
