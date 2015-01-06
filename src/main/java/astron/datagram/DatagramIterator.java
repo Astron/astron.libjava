@@ -7,13 +7,13 @@ import java.nio.ByteOrder;
 
 public class DatagramIterator {
 
-    private int offset = 0;
-    private ByteBuffer buffer;
+    private int _offset = 0;
+    private ByteBuffer _buffer;
 
     public DatagramIterator(byte[] bytes) {
-        this.buffer = ByteBuffer.allocate(bytes.length);
-        this.buffer.order(ByteOrder.LITTLE_ENDIAN);
-        this.buffer.put(bytes);
+        _buffer = ByteBuffer.allocate(bytes.length);
+        _buffer.order(ByteOrder.LITTLE_ENDIAN);
+        _buffer.put(bytes);
     }
 
     public DatagramIterator(Datagram datagram) {
@@ -21,8 +21,8 @@ public class DatagramIterator {
     }
 
     public byte getByte() {
-        byte value = this.buffer.get(this.offset);
-        this.offset += 1;
+        byte value = _buffer.get(_offset);
+        _offset += 1;
         return value;
     }
 
@@ -37,8 +37,8 @@ public class DatagramIterator {
     }
 
     public char getChar() {
-        char value = (char) this.buffer.get(this.offset);
-        this.offset += 1;
+        char value = (char) _buffer.get(_offset);
+        _offset += 1;
         return value;
     }
 
@@ -55,61 +55,61 @@ public class DatagramIterator {
     }
 
     public byte getInt8() {
-        byte value = this.buffer.get(this.offset);
-        this.offset += 1;
+        byte value = _buffer.get(_offset);
+        _offset += 1;
         return value;
     }
 
     public short getInt16() {
-        short value = this.buffer.getShort(this.offset);
-        this.offset += 2;
+        short value = _buffer.getShort(_offset);
+        _offset += 2;
         return value;
     }
 
     public int getInt32() {
-        int value = this.buffer.getInt(this.offset);
-        this.offset += 4;
+        int value = _buffer.getInt(_offset);
+        _offset += 4;
         return value;
     }
 
     public long getInt64() {
-        long value = (int) this.buffer.getLong(this.offset);
-        this.offset += 8;
+        long value = (int) _buffer.getLong(_offset);
+        _offset += 8;
         return value;
     }
 
     public short getUint8() {
-        short value = this.buffer.get(this.offset);
-        this.offset += 1;
+        short value = _buffer.get(_offset);
+        _offset += 1;
         return value;
     }
 
     public int getUint16() {
-        int value = this.buffer.getShort(this.offset);
-        this.offset += 2;
+        int value = _buffer.getShort(_offset);
+        _offset += 2;
         return value;
     }
 
     public long getUint32() {
-        long value = this.buffer.getInt(this.offset);
-        this.offset += 4;
+        long value = _buffer.getInt(_offset);
+        _offset += 4;
         return value;
     }
 
     public int getDoId() {
-        int value = this.buffer.getInt(this.offset);
-        this.offset += 4;
+        int value = _buffer.getInt(_offset);
+        _offset += 4;
         return value;
     }
 
     public long getUint64() {
-        long value = this.buffer.getLong(this.offset);
-        this.offset += 8;
+        long value = _buffer.getLong(_offset);
+        _offset += 8;
         return value;
     }
 
     public int getOffset() {
-        return this.offset;
+        return _offset;
     }
 
     public static Object getDataType(DatagramIterator datagram, DDataTypes dataType) {
