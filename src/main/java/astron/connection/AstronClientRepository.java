@@ -21,7 +21,7 @@ public class AstronClientRepository extends Connection {
 
     protected int _clientState = ClientStates.CONNECTING;
 
-    public AstronClientRepository(String address, int port, String version, DCFile dcFile) {
+    public AstronClientRepository(final String address, final int port, final String version, final DCFile dcFile) {
         super(address, port);
 
         _objectFactory = new ObjectFactory(this);
@@ -34,15 +34,15 @@ public class AstronClientRepository extends Connection {
         }
     }
 
-    public IDistributedObject generateGlobalObject(int doId, String dclassName) {
+    public IDistributedObject generateGlobalObject(final int doId, final String dclassName) {
         return _objectFactory.requestObject(doId, dclassName);
     }
 
-    public void addInterest(int parentId, int zoneId) {
+    public void addInterest(final int parentId, final int zoneId) {
         this.sendAddInterest(1, 2, parentId, zoneId);
     }
 
-    public void sendAddInterest(int context, int interestId, int parentId, int zoneId) {
+    public void sendAddInterest(final int context, final int interestId, final int parentId, final int zoneId) {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_ADD_INTEREST);
         datagram.addUint32(context);
         datagram.addUint16(interestId);
@@ -51,7 +51,7 @@ public class AstronClientRepository extends Connection {
         this.send(datagram);
     };
 
-    public void sendAddInterestMultiple(int context, int interestId, int parentId, int[] zoneIds) {
+    public void sendAddInterestMultiple(final int context, final int interestId, final int parentId, final int[] zoneIds) {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_ADD_INTEREST_MULTIPLE);
         datagram.addUint32(context);
         datagram.addUint16(interestId);
@@ -63,14 +63,14 @@ public class AstronClientRepository extends Connection {
         this.send(datagram);
     }
 
-    public void sendRemoveInterest(int context, int interestId) {
+    public void sendRemoveInterest(final int context, final int interestId) {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_REMOVE_INTEREST);
         datagram.addUint32(context);
         datagram.addUint16(interestId);
         this.send(datagram);
     }
 
-    public IDistributedObject getDo(int doId) {
+    public IDistributedObject getDo(final int doId) {
         return _objectFactory.getDo(doId);
     }
 
@@ -90,7 +90,7 @@ public class AstronClientRepository extends Connection {
         return _clientState;
     }
 
-    public void setClientState(int clientState) {
+    public void setClientState(final int clientState) {
         _clientState = clientState;
     }
 
@@ -105,7 +105,7 @@ public class AstronClientRepository extends Connection {
         System.out.println("Handle hello response");
     }
 
-    private void handleObjectSetField(DatagramIterator datagram) {
+    private void handleObjectSetField(final DatagramIterator datagram) {
 
         // Get the doId and the fieldId
         int doId = datagram.getDoId();
@@ -152,7 +152,7 @@ public class AstronClientRepository extends Connection {
 
     }
 
-    public void handleDatagram(DatagramIterator datagram, int messageType) {
+    public void handleDatagram(final DatagramIterator datagram, final int messageType) {
         if (_clientState == ClientStates.CONNECTING && messageType == MessageTypes.CLIENT_HELLO_RESP) {
             this.handleHelloResp();
         } else if (messageType == MessageTypes.CLIENT_OBJECT_SET_FIELD) {

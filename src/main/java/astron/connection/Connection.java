@@ -24,7 +24,7 @@ public abstract class Connection implements Runnable {
     private boolean _polling;
     private Thread _thread;
 
-    public Connection(String address, int port) {
+    public Connection(final String address, final int port) {
         _address = address;
         _port = port;
 
@@ -50,11 +50,11 @@ public abstract class Connection implements Runnable {
         }
     }
 
-    public void send(Datagram datagram) {
+    public void send(final Datagram datagram) {
         datagram.writeTo(this.getOutputStream());
     }
 
-    public void send(byte[] bytes) {
+    public void send(final byte[] bytes) {
         try {
             _outputStream.write(bytes);
         } catch (IOException e) {
@@ -62,11 +62,11 @@ public abstract class Connection implements Runnable {
         }
     }
 
-    public void handleUnknownHost(Exception e) {
+    public void handleUnknownHost(final Exception e) {
         System.out.println(String.format("Unknown host: %s:%d", _address, _port));
     }
 
-    public void handleException(Exception e) {
+    public void handleException(final Exception e) {
         System.out.println(String.format("Got an unknown Exception: %s", e.toString()));
     }
 
@@ -90,7 +90,7 @@ public abstract class Connection implements Runnable {
         return _outputStream;
     }
 
-    public abstract void handleDatagram(DatagramIterator datagram, int messageType);
+    public abstract void handleDatagram(final DatagramIterator datagram, final int messageType);
 
     public void startPolling() {
         if(_polling) return;
