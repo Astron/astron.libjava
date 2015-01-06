@@ -75,7 +75,9 @@ public class HashGenerator {
          * @return the nth prime
          */
         public int get(final int n) {
-            assert n >= 0;
+            if (n < 0) {
+                throw new IllegalArgumentException("Invalid prime number index: " + n);
+            }
             // ensure the arraylist has at least n of capacity
             _primes.ensureCapacity(n);
             int candidate = _primes.get(_primes.size() - 1) + 1;
