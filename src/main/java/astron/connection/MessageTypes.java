@@ -49,6 +49,7 @@ public class MessageTypes {
     public static final int STATESERVER_CREATE_OBJECT_WITH_REQUIRED       = 2000;
     public static final int STATESERVER_CREATE_OBJECT_WITH_REQUIRED_OTHER = 2001;
     public static final int STATESERVER_DELETE_AI_OBJECTS                 = 2009;
+
     // StateServer object messages
     public static final int STATESERVER_OBJECT_GET_FIELD         = 2010;
     public static final int STATESERVER_OBJECT_GET_FIELD_RESP    = 2011;
@@ -61,6 +62,7 @@ public class MessageTypes {
     public static final int STATESERVER_OBJECT_DELETE_FIELD_RAM  = 2030;
     public static final int STATESERVER_OBJECT_DELETE_FIELDS_RAM = 2031;
     public static final int STATESERVER_OBJECT_DELETE_RAM        = 2032;
+
     // StateServer visibility messages
     public static final int STATESERVER_OBJECT_SET_LOCATION                       = 2040;
     public static final int STATESERVER_OBJECT_CHANGING_LOCATION                  = 2041;
@@ -82,6 +84,7 @@ public class MessageTypes {
     public static final int STATESERVER_OBJECT_GET_OWNER_RESP                     = 2065;
     public static final int STATESERVER_OBJECT_ENTER_INTEREST_WITH_REQUIRED       = 2066;
     public static final int STATESERVER_OBJECT_ENTER_INTEREST_WITH_REQUIRED_OTHER = 2067;
+
     // StateServer parent-method messages
     public static final int STATESERVER_OBJECT_GET_ZONE_OBJECTS     = 2100;
     public static final int STATESERVER_OBJECT_GET_ZONES_OBJECTS    = 2102;

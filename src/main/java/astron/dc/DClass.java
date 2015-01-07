@@ -9,53 +9,53 @@ import astron.datagram.Datagram;
 
 public final class DClass {
 
-    public String name;
-    public int id;
-    public ArrayList<DMethod> methods = new ArrayList<DMethod>();
-    public Map<String, DMethod> name2method = new HashMap<String, DMethod>();
-    public Map<Integer, DMethod> id2method = new HashMap<Integer, DMethod>();
-    public ArrayList<DClass> parents = new ArrayList<DClass>();
+    private final String _name;
+    private final int _id;
+    private final ArrayList<DMethod> _methods = new ArrayList<DMethod>();
+    private final Map<String, DMethod> _name2method = new HashMap<String, DMethod>();
+    private final Map<Integer, DMethod> _id2method = new HashMap<Integer, DMethod>();
+    private final ArrayList<DClass> _parents = new ArrayList<DClass>();
 
-    public DClass(String name, int id) {
-        this.name = name;
-        this.id = id;
+    public DClass(final String name, final int id) {
+        _name = name;
+        _id = id;
     }
 
-    public void addParent(DClass parent) {
-        this.parents.add(parent);
+    public void addParent(final DClass parent) {
+        _parents.add(parent);
     }
 
-    public void addParents(ArrayList<DClass> parents) {
-        this.parents.addAll(parents);
+    public void addParents(final ArrayList<DClass> parents) {
+        _parents.addAll(parents);
     }
 
-    public DMethod getMethod(String name) {
-        return this.name2method.get(name);
+    public DMethod getMethod(final String name) {
+        return _name2method.get(name);
     }
 
-    public DMethod getMethod(int id) {
-        return this.id2method.get(id);
+    public DMethod getMethod(final int id) {
+        return _id2method.get(id);
     }
 
-    public int getMethodId(String name) {
-        return this.getMethod(name).getId();
+    public int getMethodId(final String name) {
+        return getMethod(name).getId();
     }
 
-    public void addMethod(DMethod method) {
-        this.methods.add(method);
-        this.name2method.put(method.getName(), method);
-        this.id2method.put(method.getId(), method);
+    public void addMethod(final DMethod method) {
+        _methods.add(method);
+        _name2method.put(method.getName(), method);
+        _id2method.put(method.getId(), method);
     }
 
-    public Datagram clientFormatUpdate(String fieldName, int doId) {
+    public Datagram clientFormatUpdate(final String fieldName, final int doId) {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_OBJECT_SET_FIELD);
         datagram.addUint32(doId);
-        datagram.addUint16(this.getMethodId(fieldName));
+        datagram.addUint16(getMethodId(fieldName));
         return datagram;
     }
 
-    public Datagram clientFormatUpdate(String fieldName, int doId, Object... args) {
-        DMethod dmethod = this.getMethod(fieldName);
+    public Datagram clientFormatUpdate(final String fieldName, final int doId, final Object... args) {
+        DMethod dmethod = getMethod(fieldName);
 
         Datagram datagram = new Datagram(MessageTypes.CLIENT_OBJECT_SET_FIELD);
         datagram.addUint32(doId);
@@ -68,27 +68,27 @@ public final class DClass {
         return datagram;
     }
 
-    public Datagram clientFormatUpdate(int fieldId, int doId) {
-        return this.clientFormatUpdate(this.getMethod(fieldId).getName(), doId);
+    public Datagram clientFormatUpdate(final int fieldId, final int doId) {
+        return clientFormatUpdate(getMethod(fieldId).getName(), doId);
     }
 
-    public Datagram clientFormatUpdate(int fieldId, int doId, Object... args) {
-        return this.clientFormatUpdate(this.getMethod(fieldId).getName(), doId, args);
+    public Datagram clientFormatUpdate(final int fieldId, final int doId, final Object... args) {
+        return clientFormatUpdate(getMethod(fieldId).getName(), doId, args);
     }
 
     public void printInfo() {
-        System.out.println(String.format("---DClass---\nName: %s\nID: %s\n---Methods---", this.name, this.id));
-        for (DMethod dmethod: this.methods) {
+        System.out.println(String.format("---DClass---\nName: %s\nID: %s\n---Methods---", _name, _id));
+        for (DMethod dmethod: _methods) {
             dmethod.printInfo();
         }
     }
 
     public int getId() {
-        return this.id;
+        return _id;
     }
 
     public String getName() {
-        return this.name;
+        return _name;
     }
 
 }

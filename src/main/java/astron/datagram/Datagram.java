@@ -30,7 +30,7 @@ public class Datagram {
 
     public Datagram(final int messageType) {
         this();
-        this.addUint16(messageType);
+        addUint16(messageType);
     }
 
     /* Utility Functions */
@@ -48,7 +48,7 @@ public class Datagram {
     }
 
     public String toString() {
-        return Arrays.toString(this.getBytes());
+        return Arrays.toString(getBytes());
     }
 
     /* Data Types */
@@ -59,9 +59,9 @@ public class Datagram {
 
     public void addBool(final boolean value) {
         if (value) {
-            this.addUint8(1);
+            addUint8(1);
         } else {
-            this.addUint8(0);
+            addUint8(0);
         }
     }
 
@@ -73,9 +73,9 @@ public class Datagram {
         if (value.length() > UnsignedNumbers.UINT16_MAX) {
             throw new IllegalArgumentException("String is too long to be packed into a Datagram");
         }
-        this.addUint16(value.length());
+        addUint16(value.length());
         for (char chr : value.toCharArray()) {
-            this.addChar(chr);
+            addChar(chr);
         }
     }
 
@@ -204,10 +204,10 @@ public class Datagram {
 
     public void writeTo(final DataOutputStream output) {
         try {
-            ByteBuffer data = ByteBuffer.allocate(this.getLength() + 2);
+            ByteBuffer data = ByteBuffer.allocate(getLength() + 2);
             data.order(ByteOrder.LITTLE_ENDIAN);
-            data.putChar((char) this.getLength());
-            data.put(this.getBytes());
+            data.putChar((char) getLength());
+            data.put(getBytes());
             output.write(data.array());
         } catch (Exception e) { System.out.println(e.toString()); }
     }

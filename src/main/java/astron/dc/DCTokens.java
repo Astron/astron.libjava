@@ -6,13 +6,20 @@ import java.util.Map;
 public class DCTokens {
 
     public static final String COMMENT = "//";
-    public static final String IMPORT_START = "from";
-    public static final String STRUCT_START = "struct";
-    public static final String CLASS_START = "dclass";
+    public static final String FROM = "from";
+    public static final String IMPORT = "import";
+    public static final String STRUCT = "struct";
+    public static final String CLASS = "dclass";
+    public static final String TYPEDEF = "typedef";
+    public static final String STATEMENT_END = ";";
+    public static final String METHOD_START = "\\(";
+    public static final String METHOD_END = ")";
+    public static final String INCLOSURE_START = "{";
     public static final String INCLOSURE_END = "};";
     public static final String INHERITANCE = ":";
-    public static final String SEPERATOR = ",";
-    public static final String TYPEDEF = "typedef";
+    public static final String SEPARATOR = ",";
+    public static final String TYPE_SEPARATOR = "/";
+    public static final String EQUALS = "=";
 
     public static final Map<String, DDataTypes> DATA_TYPES = new HashMap<String, DDataTypes>();
     public static final Map<DDataTypes, Class<?>> DATA_CLASSES = new HashMap<DDataTypes, Class<?>>();

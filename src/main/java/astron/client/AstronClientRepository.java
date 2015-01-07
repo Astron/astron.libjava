@@ -32,8 +32,8 @@ public class AstronClientRepository extends Connection {
         _version = version;
         _dcFile = dcFile;
 
-        if (this.isConnected()) {
-            this.sendHello();
+        if (isConnected()) {
+            sendHello();
         }
     }
 
@@ -42,7 +42,7 @@ public class AstronClientRepository extends Connection {
     }
 
     public void addInterest(final int parentId, final int zoneId) {
-        this.sendAddInterest(1, 2, parentId, zoneId);
+        sendAddInterest(1, 2, parentId, zoneId);
     }
 
     public void sendAddInterest(final int context, final int interestId, final int parentId, final int zoneId) {
@@ -51,7 +51,7 @@ public class AstronClientRepository extends Connection {
         datagram.addUint16(interestId);
         datagram.addUint32(parentId);
         datagram.addUint32(zoneId);
-        this.send(datagram);
+        send(datagram);
     };
 
     public void sendAddInterestMultiple(final int context, final int interestId, final int parentId, final int[] zoneIds) {
@@ -63,14 +63,14 @@ public class AstronClientRepository extends Connection {
         for (int zoneId: zoneIds) {
             datagram.addUint32(zoneId);
         }
-        this.send(datagram);
+        send(datagram);
     }
 
     public void sendRemoveInterest(final int context, final int interestId) {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_REMOVE_INTEREST);
         datagram.addUint32(context);
         datagram.addUint16(interestId);
-        this.send(datagram);
+        send(datagram);
     }
 
     public IDistributedObject getDo(final int doId) {
@@ -99,9 +99,9 @@ public class AstronClientRepository extends Connection {
 
     private void sendHello() {
         Datagram datagram = new Datagram(MessageTypes.CLIENT_HELLO);
-        datagram.addUint32(this.getDcHash());
+        datagram.addUint32(getDcHash());
         datagram.addString(_version);
-        this.send(datagram);
+        send(datagram);
     }
 
     protected void handleHelloResp() {
@@ -129,7 +129,7 @@ public class AstronClientRepository extends Connection {
         }
 
         // Get the DistributedObject
-        IDistributedObject dobject = this.getDo(doId);
+        IDistributedObject dobject = getDo(doId);
 
         try {
 
@@ -157,9 +157,9 @@ public class AstronClientRepository extends Connection {
 
     public void handleDatagram(final DatagramIterator datagram, final int messageType) {
         if (_clientState == ClientState.CONNECTING && messageType == MessageTypes.CLIENT_HELLO_RESP) {
-            this.handleHelloResp();
+            handleHelloResp();
         } else if (messageType == MessageTypes.CLIENT_OBJECT_SET_FIELD) {
-            this.handleObjectSetField(datagram);
+            handleObjectSetField(datagram);
         }
     }
 

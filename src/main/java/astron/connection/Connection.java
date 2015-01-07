@@ -38,20 +38,20 @@ public abstract class Connection implements Runnable {
             _outputStream = new DataOutputStream(_socket.getOutputStream());
 
         } catch (UnknownHostException e) {
-
-            this.handleUnknownHost(e);
+            
+            handleUnknownHost(e);
             _connected = false;
 
         } catch (IOException e) {
 
-            this.handleException(e);
+            handleException(e);
             _connected = false;
 
         }
     }
 
     public void send(final Datagram datagram) {
-        datagram.writeTo(this.getOutputStream());
+        datagram.writeTo(_outputStream);
     }
 
     public void send(final byte[] bytes) {
@@ -135,7 +135,7 @@ public abstract class Connection implements Runnable {
                 int messageType = datagram.getUint16();
 
                 // Handle the datagram
-                this.handleDatagram(datagram, messageType);
+                handleDatagram(datagram, messageType);
 
             } catch (Exception e) {
 

@@ -4,45 +4,45 @@ import java.util.ArrayList;
 
 public final class DMethod {
 
-    public String name;
-    public int id;
-    public ArrayList<DDataTypes> args = new ArrayList<DDataTypes>();
+    private final String _name;
+    private final int _id;
+    private final ArrayList<DDataTypes> _args = new ArrayList<DDataTypes>();
 
     public DMethod(String name, int id) {
-        this.name = name;
-        this.id = id;
+        _name = name;
+        _id = id;
     }
 
     public void addArg(DDataTypes dataType) {
-        this.args.add(dataType);
+        _args.add(dataType);
     }
 
     public void addArgs(ArrayList<DDataTypes> dataTypes) {
-        this.args.addAll(dataTypes);
+        _args.addAll(dataTypes);
     }
 
     public ArrayList<DDataTypes> getArgs() {
-        return this.args;
+        return _args;
     }
 
     public DDataTypes getArg(int index) {
-        return this.args.get(index);
+        return _args.get(index);
     }
 
     public int getArgCount() {
-        return this.args.size();
+        return _args.size();
     }
 
     public void printInfo() {
-        System.out.println(String.format("---DMethod---\nName: %s\nID: %s\nArgs: %s", this.name, this.id, this.args));
+        System.out.println(String.format("---DMethod---\nName: %s\nID: %s\nArgs: %s", _name, _id, _args));
     }
 
     public int getId() {
-        return this.id;
+        return _id;
     }
 
     public String getName() {
-        return this.name;
+        return _name;
     }
 
 }

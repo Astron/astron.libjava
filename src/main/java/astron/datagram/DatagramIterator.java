@@ -27,7 +27,7 @@ public class DatagramIterator {
     }
 
     public boolean getBool() {
-        int value = this.getUint8();
+        int value = getUint8();
 
         if (value == 0) {
             return false;
@@ -45,10 +45,10 @@ public class DatagramIterator {
     public String getString() {
         StringBuilder sb = new StringBuilder();
 
-        int length = this.getUint16();
+        int length = getUint16();
 
         for (int i=0; i<length; i++) {
-            sb.append(this.getChar());
+            sb.append(getChar());
         }
 
         return sb.toString();
