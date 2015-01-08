@@ -16,6 +16,13 @@
       <version>18.0</version>
     </dependency>
 
+    <!-- ANTLR helps us parse the DCFile -->
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4</artifactId>
+      <version>4.3</version>
+    </dependency>
+
     <!-- Test dependencies -->
     <dependency>
       <groupId>junit</groupId>
