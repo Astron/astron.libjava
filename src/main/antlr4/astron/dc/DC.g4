@@ -43,6 +43,10 @@ KW_UINT64 : 'uint64' ;
 KW_FLOAT32 : 'float32' ;
 KW_FLOAT64 : 'float64' ;
 
+// see https://github.com/antlr/grammars-v4/blob/master/c/C.g4#L886-L894
+LINE_COMMENT : '//' ~[\r\n]* -> skip;
+BLOCK_COMMENT : '/*' .*? '*/' -> skip;
+
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]+ ;
 
 // Disregard  spaces, tabs, returns, and new lines
