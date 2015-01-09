@@ -2,6 +2,19 @@ grammar DC;
 
 // ------ Parsing Elements ------
 
+// A DC File consists of zero or more statements
+init : statement*
+     ;
+
+// Based on the reference bison parser, statements can be:
+// - a dclass
+// - a dstruct
+// - an import statement
+// - a typedef
+// - a keyword declaration
+statement : import_dclass
+          ;
+
 import_dclass : KW_IMPORT import_module
               | KW_FROM import_module KW_IMPORT import_symbols
               ;
@@ -29,6 +42,7 @@ KW_STRUCT : 'struct' ;
 KW_FROM : 'from' ;
 KW_IMPORT : 'import' ;
 KW_TYPEDEF : 'typedef' ;
+KW_KEYWORD : 'keyword' ;
 
 KW_STRING : 'string' ;
 KW_BLOB : 'blob' ;
