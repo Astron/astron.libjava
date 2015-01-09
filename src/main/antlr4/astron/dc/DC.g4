@@ -41,7 +41,7 @@ KW_UINT16 : 'uint16' ;
 KW_UINT32 : 'uint32' ;
 KW_UINT64 : 'uint64' ;
 
-IDENTIFIER : [a-zA-Z.]+ ;
+IDENTIFIER : [A-Za-z_][A-Za-z_0-9]+ ;
 
 // Disregard  spaces, tabs, returns, and new lines
 WS : [ \t\r\n]+ -> skip ;
