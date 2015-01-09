@@ -1,5 +1,9 @@
 grammar dc;
 
+@header {
+  package astron.dc;
+}
+
 // ------ Lexical Elements ------
 
 // Keywords
