@@ -40,6 +40,8 @@ KW_UINT8 : 'uint8' ;
 KW_UINT16 : 'uint16' ;
 KW_UINT32 : 'uint32' ;
 KW_UINT64 : 'uint64' ;
+KW_FLOAT32 : 'float32' ;
+KW_FLOAT64 : 'float64' ;
 
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]+ ;
 
