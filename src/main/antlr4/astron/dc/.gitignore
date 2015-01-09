@@ -1,0 +1,6 @@
+# Ignore .class, .java, and .tokens files
+# this allows devs to simply run antlr convienence functions like the testrig in this directory
+*.class
+*.java
+*.tokens
+
