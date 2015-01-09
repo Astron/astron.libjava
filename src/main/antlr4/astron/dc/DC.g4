@@ -13,8 +13,10 @@ init : statement*
 // - a typedef
 // - a keyword declaration
 statement : import_dclass
+          | keyword_def
           ;
 
+// imports
 import_dclass : KW_IMPORT import_module
               | KW_FROM import_module KW_IMPORT import_symbols
               ;
@@ -34,6 +36,9 @@ import_symbol_list : import_alternatives
 import_alternatives : IDENTIFIER
                     | import_alternatives '/' IDENTIFIER
                     ;
+
+// defining a custom keyword
+keyword_def : KW_KEYWORD IDENTIFIER ';' ;
 
 // ------ Lexical Elements ------
 
