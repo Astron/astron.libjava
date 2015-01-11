@@ -1,5 +1,6 @@
-// Generated from /Users/stowellc17/astron.libjava/src/main/antlr4/astron/dc/DC.g4 by ANTLR 4.4.1-dev
+// Generated from astron/dc/DC.g4 by ANTLR 4.3
 package astron.dc;
+
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -9,53 +10,90 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface DCListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link DCParser#import_symbol_list}.
+	 * Enter a parse tree produced by {@link DCParser#importAlternatives}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_symbol_list(@NotNull DCParser.Import_symbol_listContext ctx);
+	void enterImportAlternatives(@NotNull DCParser.ImportAlternativesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DCParser#import_symbol_list}.
+	 * Exit a parse tree produced by {@link DCParser#importAlternatives}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_symbol_list(@NotNull DCParser.Import_symbol_listContext ctx);
+	void exitImportAlternatives(@NotNull DCParser.ImportAlternativesContext ctx);
+
 	/**
-	 * Enter a parse tree produced by {@link DCParser#import_alternatives}.
+	 * Enter a parse tree produced by {@link DCParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_alternatives(@NotNull DCParser.Import_alternativesContext ctx);
+	void enterStatement(@NotNull DCParser.StatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DCParser#import_alternatives}.
+	 * Exit a parse tree produced by {@link DCParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_alternatives(@NotNull DCParser.Import_alternativesContext ctx);
+	void exitStatement(@NotNull DCParser.StatementContext ctx);
+
 	/**
-	 * Enter a parse tree produced by {@link DCParser#import_dclass}.
+	 * Enter a parse tree produced by {@link DCParser#importSymbolList}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_dclass(@NotNull DCParser.Import_dclassContext ctx);
+	void enterImportSymbolList(@NotNull DCParser.ImportSymbolListContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DCParser#import_dclass}.
+	 * Exit a parse tree produced by {@link DCParser#importSymbolList}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_dclass(@NotNull DCParser.Import_dclassContext ctx);
+	void exitImportSymbolList(@NotNull DCParser.ImportSymbolListContext ctx);
+
 	/**
-	 * Enter a parse tree produced by {@link DCParser#import_module}.
+	 * Enter a parse tree produced by {@link DCParser#init}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_module(@NotNull DCParser.Import_moduleContext ctx);
+	void enterInit(@NotNull DCParser.InitContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DCParser#import_module}.
+	 * Exit a parse tree produced by {@link DCParser#init}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_module(@NotNull DCParser.Import_moduleContext ctx);
+	void exitInit(@NotNull DCParser.InitContext ctx);
+
 	/**
-	 * Enter a parse tree produced by {@link DCParser#import_symbols}.
+	 * Enter a parse tree produced by {@link DCParser#keywordDef}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_symbols(@NotNull DCParser.Import_symbolsContext ctx);
+	void enterKeywordDef(@NotNull DCParser.KeywordDefContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DCParser#import_symbols}.
+	 * Exit a parse tree produced by {@link DCParser#keywordDef}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_symbols(@NotNull DCParser.Import_symbolsContext ctx);
+	void exitKeywordDef(@NotNull DCParser.KeywordDefContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link DCParser#importModule}.
+	 * @param ctx the parse tree
+	 */
+	void enterImportModule(@NotNull DCParser.ImportModuleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DCParser#importModule}.
+	 * @param ctx the parse tree
+	 */
+	void exitImportModule(@NotNull DCParser.ImportModuleContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link DCParser#importDclass}.
+	 * @param ctx the parse tree
+	 */
+	void enterImportDclass(@NotNull DCParser.ImportDclassContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DCParser#importDclass}.
+	 * @param ctx the parse tree
+	 */
+	void exitImportDclass(@NotNull DCParser.ImportDclassContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link DCParser#importSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterImportSymbols(@NotNull DCParser.ImportSymbolsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DCParser#importSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitImportSymbols(@NotNull DCParser.ImportSymbolsContext ctx);
 }

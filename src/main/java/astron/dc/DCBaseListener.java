@@ -1,4 +1,4 @@
-// Generated from /Users/stowellc17/astron.libjava/src/main/antlr4/astron/dc/DC.g4 by ANTLR 4.4.1-dev
+// Generated from astron/dc/DC.g4 by ANTLR 4.3
 package astron.dc;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -17,61 +17,104 @@ public class DCBaseListener implements DCListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImport_symbol_list(@NotNull DCParser.Import_symbol_listContext ctx) { }
+	@Override public void enterImportAlternatives(@NotNull DCParser.ImportAlternativesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImport_symbol_list(@NotNull DCParser.Import_symbol_listContext ctx) { }
+	@Override public void exitImportAlternatives(@NotNull DCParser.ImportAlternativesContext ctx) { }
+
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImport_alternatives(@NotNull DCParser.Import_alternativesContext ctx) { }
+	@Override public void enterStatement(@NotNull DCParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImport_alternatives(@NotNull DCParser.Import_alternativesContext ctx) { }
+	@Override public void exitStatement(@NotNull DCParser.StatementContext ctx) { }
+
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImport_dclass(@NotNull DCParser.Import_dclassContext ctx) { }
+	@Override public void enterImportSymbolList(@NotNull DCParser.ImportSymbolListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImport_dclass(@NotNull DCParser.Import_dclassContext ctx) { }
+	@Override public void exitImportSymbolList(@NotNull DCParser.ImportSymbolListContext ctx) { }
+
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImport_module(@NotNull DCParser.Import_moduleContext ctx) { }
+	@Override public void enterInit(@NotNull DCParser.InitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImport_module(@NotNull DCParser.Import_moduleContext ctx) { }
+	@Override public void exitInit(@NotNull DCParser.InitContext ctx) { }
+
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImport_symbols(@NotNull DCParser.Import_symbolsContext ctx) { }
+	@Override public void enterKeywordDef(@NotNull DCParser.KeywordDefContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImport_symbols(@NotNull DCParser.Import_symbolsContext ctx) { }
+	@Override public void exitKeywordDef(@NotNull DCParser.KeywordDefContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterImportModule(@NotNull DCParser.ImportModuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImportModule(@NotNull DCParser.ImportModuleContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterImportDclass(@NotNull DCParser.ImportDclassContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImportDclass(@NotNull DCParser.ImportDclassContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterImportSymbols(@NotNull DCParser.ImportSymbolsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImportSymbols(@NotNull DCParser.ImportSymbolsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

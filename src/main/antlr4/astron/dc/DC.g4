@@ -12,33 +12,33 @@ init : statement*
 // - an import statement
 // - a typedef
 // - a keyword declaration
-statement : import_dclass
-          | keyword_def
+statement : importDclass
+          | keywordDef
           ;
 
-// imports
-import_dclass : KW_IMPORT import_module
-              | KW_FROM import_module KW_IMPORT import_symbols
+// Imports
+importDclass : KW_IMPORT importModule
+             | KW_FROM importModule KW_IMPORT importSymbols
+             ;
+
+importModule : importAlternatives
+             | importModule '.' importAlternatives
+             ;
+
+importSymbols : importSymbolList
+              | '*'
               ;
 
-import_module : import_alternatives
-              | import_module '.' import_alternatives
-              ;
+importSymbolList : importAlternatives
+                 | importSymbolList ',' importAlternatives
+                 ;
 
-import_symbols : import_symbol_list
-               | '*'
-               ;
-
-import_symbol_list : import_alternatives
-                   | import_symbol_list ',' import_alternatives
+importAlternatives : IDENTIFIER
+                   | importAlternatives '/' IDENTIFIER
                    ;
 
-import_alternatives : IDENTIFIER
-                    | import_alternatives '/' IDENTIFIER
-                    ;
-
-// defining a custom keyword
-keyword_def : KW_KEYWORD IDENTIFIER ';' ;
+// Defining a custom keyword
+keywordDef : KW_KEYWORD IDENTIFIER ';' ;
 
 // ------ Lexical Elements ------
 
@@ -62,9 +62,9 @@ KW_UINT64 : 'uint64' ;
 KW_FLOAT32 : 'float32' ;
 KW_FLOAT64 : 'float64' ;
 
-// see https://github.com/antlr/grammars-v4/blob/master/c/C.g4#L886-L894
-LINE_COMMENT : '//' ~[\r\n]* -> skip;
-BLOCK_COMMENT : '/*' .*? '*/' -> skip;
+// See https://github.com/antlr/grammars-v4/blob/master/c/C.g4#L886-L894
+LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
 
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]+ ;
 
