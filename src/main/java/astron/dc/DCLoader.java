@@ -11,6 +11,8 @@ public class DCLoader extends DCBaseListener {
 
     private String _currentImportPackage;
 
+    // Imports
+
     public void enterImportDclass(@NotNull DCParser.ImportDclassContext ctx) {
         _currentImportPackage = ctx.importModule().getText();
     }
@@ -24,6 +26,12 @@ public class DCLoader extends DCBaseListener {
 
             _dc.addImport(dimport);
         }
+    }
+
+    // Keywords
+
+    public void enterKeywordDef(@NotNull DCParser.KeywordDefContext ctx) {
+        _dc.addKeyword(ctx.IDENTIFIER().getText());
     }
 
     public DCFile getDcFile() {
