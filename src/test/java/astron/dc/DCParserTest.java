@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author chandler14362
@@ -29,6 +30,9 @@ public class DCParserTest {
 
         DCFile dcFile = loader.getDcFile();
         dcFile.printInfo();
+
+        assertEquals(4, dcFile.getImportCount());
+        assertEquals(2, dcFile.getKeywordCount());
     }
 
 }
