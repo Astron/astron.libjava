@@ -9,14 +9,21 @@ public class DCLoader extends DCBaseListener {
 
     private final DCFile _dc = new DCFile();
 
-    private DImport _currentImport;
+    private String _currentImportPackage;
 
     public void enterImportDclass(@NotNull DCParser.ImportDclassContext ctx) {
-        _currentImport = new DImport(ctx.importModule().getText());
+        _currentImportPackage = ctx.importModule().getText();
     }
 
-    public void exitImportDclass(@NotNull DCParser.ImportDclassContext ctx) {
-        _dc.addImport(_currentImport);
+    public void enterImportSymbols(@NotNull DCParser.ImportSymbolsContext ctx) {
+        String[] symbols = ctx.getText().split(",");
+
+        for (String symbol: symbols) {
+            DImport dimport = new DImport(_currentImportPackage);
+            dimport.setSymbols(symbol);
+
+            _dc.addImport(dimport);
+        }
     }
 
     public DCFile getDcFile() {

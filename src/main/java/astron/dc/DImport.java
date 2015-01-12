@@ -7,17 +7,16 @@ import java.util.ArrayList;
  */
 public class DImport {
 
-    private final ArrayList<String> _alternatives = new ArrayList<String>();
     private String _package;
-    private String _module;
+    private String _symbols;
 
     public DImport(String pack) {
         _package = pack;
     }
 
-    public DImport(String pack, String module) {
+    public DImport(String pack, String symbols) {
         _package = pack;
-        _module = module;
+        _symbols = symbols;
     }
 
     public DImport() {}
@@ -30,32 +29,16 @@ public class DImport {
         return _package;
     }
 
-    public void setModule(String module) {
-        _module = module;
+    public void setSymbols(String symbols) {
+        _symbols = symbols;
     }
 
-    public String getModule() {
-        return _module;
-    }
-
-    public boolean isModule(String module) {
-        return _module == module;
-    }
-
-    public void addAlternative(String alternative) {
-        _alternatives.add(alternative);
-    }
-
-    public String getImport() {
-        if (_module != null) {
-            return String.format("%s.%s", _package, _module);
-        } else {
-            return _package;
-        }
+    public String getSymbols() {
+        return _symbols;
     }
 
     public String toString() {
-        return String.format("---DImport---\n Import: %s",getImport());
+        return String.format("---DImport---\n Package: %s\n Symbols: %s", _package, _symbols);
     }
 
 }
