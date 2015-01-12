@@ -12,6 +12,8 @@ import java.io.FileInputStream;
 import static org.junit.Assert.assertEquals;
 
 /**
+ * Tests for the {@link astron.dc.DCParser}
+ *
  * @author chandler14362
  */
 public class DCParserTest {
@@ -30,7 +32,7 @@ public class DCParserTest {
         DCFile dcFile = loader.getDcFile();
         dcFile.printInfo();
 
-        assertEquals(4, dcFile.getImportCount());
+        assertEquals(5, dcFile.getImportCount());
         assertEquals(2, dcFile.getKeywordCount());
     }
 

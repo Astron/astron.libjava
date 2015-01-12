@@ -12,18 +12,23 @@ init : statement*
 // - an import statement
 // - a typedef
 // - a keyword declaration
-statement : importDclass
+statement : importDClass
+          | importDClassNoFrom
           | keywordDef
           ;
 
 // Imports
-importDclass : KW_IMPORT importModule
-             | KW_FROM importModule KW_IMPORT importSymbols
-             ;
+importDClassNoFrom : KW_IMPORT importModule ;
+
+importDClass : KW_FROM importModule KW_IMPORT importSymbols ;
 
 importModule : importAlternatives
              | importModule '.' importAlternatives
              ;
+
+importAlternatives : IDENTIFIER
+                   | importAlternatives '/' IDENTIFIER
+                   ;
 
 importSymbols : importSymbolList
               | '*'
@@ -32,10 +37,6 @@ importSymbols : importSymbolList
 importSymbolList : importAlternatives
                  | importSymbolList ',' importAlternatives
                  ;
-
-importAlternatives : IDENTIFIER
-                   | importAlternatives '/' IDENTIFIER
-                   ;
 
 // Defining a custom keyword
 keywordDef : KW_KEYWORD IDENTIFIER ';' ;
