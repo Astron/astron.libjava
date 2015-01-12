@@ -18,8 +18,7 @@ public class DCParserTest {
 
     @Test
     public void testDCParser() throws Exception {
-        FileInputStream fileInputStream = new FileInputStream("src/test/java/astron/dc/test_dc.dc");
-        ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileInputStream);
+        ANTLRInputStream antlrInputStream = new ANTLRInputStream(getClass().getResourceAsStream("test_dc.dc"));
         DCLexer lexer = new DCLexer(antlrInputStream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         DCParser parser = new DCParser(tokens);
