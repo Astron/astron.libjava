@@ -14,6 +14,7 @@ init : statement*
 // - a keyword declaration
 statement : importDClass
           | importDClassNoFrom
+          | typedef
           | keywordDef
           ;
 
@@ -38,8 +39,21 @@ importSymbolList : importAlternatives
                  | importSymbolList ',' importAlternatives
                  ;
 
+// Typedefs
+typedef : KW_TYPEDEF nonmethodTypeWithName ';' ;
+
 // Defining a custom keyword
 keywordDef : KW_KEYWORD IDENTIFIER ';' ;
+
+// Nonmethod types
+nonmethodTypeWithName : nonmethodType IDENTIFIER ;
+
+nonmethodType : nonmethodTypeNoArray ;
+
+nonmethodTypeNoArray : definedType ;
+
+// Defined types
+definedType : IDENTIFIER ;
 
 // ------ Lexical Elements ------
 
@@ -50,18 +64,18 @@ KW_IMPORT : 'import' ;
 KW_TYPEDEF : 'typedef' ;
 KW_KEYWORD : 'keyword' ;
 
-KW_STRING : 'string' ;
-KW_BLOB : 'blob' ;
-KW_INT8 : 'int8' ;
-KW_INT16 : 'int16' ;
-KW_INT32 : 'int32' ;
-KW_INT64 : 'int64' ;
-KW_UINT8 : 'uint8' ;
-KW_UINT16 : 'uint16' ;
-KW_UINT32 : 'uint32' ;
-KW_UINT64 : 'uint64' ;
-KW_FLOAT32 : 'float32' ;
-KW_FLOAT64 : 'float64' ;
+fragment KW_STRING : 'string' ;
+fragment KW_BLOB : 'blob' ;
+fragment KW_INT8 : 'int8' ;
+fragment KW_INT16 : 'int16' ;
+fragment KW_INT32 : 'int32' ;
+fragment KW_INT64 : 'int64' ;
+fragment KW_UINT8 : 'uint8' ;
+fragment KW_UINT16 : 'uint16' ;
+fragment KW_UINT32 : 'uint32' ;
+fragment KW_UINT64 : 'uint64' ;
+fragment KW_FLOAT32 : 'float32' ;
+fragment KW_FLOAT64 : 'float64' ;
 
 // See https://github.com/antlr/grammars-v4/blob/master/c/C.g4#L886-L894
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;

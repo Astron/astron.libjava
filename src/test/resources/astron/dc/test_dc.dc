@@ -5,3 +5,5 @@ from astron.object import DistributedObject/OV, DistributedTestObject/UD
 
 keyword testKeyword;
 keyword myKeyword;
+
+typedef int8 testTypedef;
