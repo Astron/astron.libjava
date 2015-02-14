@@ -13,15 +13,14 @@ init : statement*
 // - a typedef
 // - a keyword declaration
 statement : importDClass
-          | importDClassNoFrom
           | typedef
           | keywordDef
           ;
 
 // Imports
-importDClassNoFrom : KW_IMPORT importModule ;
-
-importDClass : KW_FROM importModule KW_IMPORT importSymbols ;
+importDClass : KW_IMPORT importModule
+             | KW_FROM importModule KW_IMPORT importSymbols 
+             ;
 
 importModule : importAlternatives
              | importModule '.' importAlternatives
@@ -48,12 +47,7 @@ keywordDef : KW_KEYWORD IDENTIFIER ';' ;
 // Nonmethod types
 nonmethodTypeWithName : nonmethodType IDENTIFIER ;
 
-nonmethodType : nonmethodTypeNoArray ;
-
-nonmethodTypeNoArray : definedType ;
-
-// Defined types
-definedType : IDENTIFIER ;
+nonmethodType : IDENTIFIER ;
 
 // ------ Lexical Elements ------
 
@@ -82,6 +76,7 @@ LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
 
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]+ ;
+INTEGER : [0-9]+ ;
 
 // Disregard  spaces, tabs, returns, and new lines
 WS : [ \t\r\n]+ -> skip ;

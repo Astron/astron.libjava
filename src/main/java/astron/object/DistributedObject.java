@@ -47,25 +47,17 @@ public class DistributedObject implements IDistributedObject {
         _dclass = dclass;
     }
 
-    public void sendUpdate(final String fieldName, final Object... args) {
-        Datagram datagram = _dclass.clientFormatUpdate(fieldName, _doId, args);
-        _cr.send(datagram);
-    }
+    // TODO
+    public void sendUpdate(final String fieldName, final Object... args) {}
 
-    public void sendUpdate(final String fieldName) {
-        Datagram datagram = _dclass.clientFormatUpdate(fieldName, _doId);
-        _cr.send(datagram);
-    }
+    // TODO
+    public void sendUpdate(final String fieldName) {}
 
-    public void sendUpdate(final int fieldId, final Object... args) {
-        Datagram datagram = _dclass.clientFormatUpdate(fieldId, _doId, args);
-        _cr.send(datagram);
-    }
+    // TODO
+    public void sendUpdate(final int fieldId, final Object... args) {}
 
-    public void sendUpdate(final int fieldId) {
-        Datagram datagram = _dclass.clientFormatUpdate(fieldId, _doId);
-        _cr.send(datagram);
-    }
+    // TODO
+    public void sendUpdate(final int fieldId) {}
     
     /* Getters And Setters */
 

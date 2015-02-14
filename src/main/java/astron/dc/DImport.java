@@ -3,32 +3,22 @@ package astron.dc;
 /**
  * @author chandler14362
  */
-public class DImport {
+public final class DImport extends DType {
 
-    private String _package;
-    private String _symbols;
-
-    public DImport(final String pack) {
-        _package = pack;
-    }
+    private final String _package;
+    private final String _symbols;
 
     public DImport(final String pack, final String symbols) {
         _package = pack;
         _symbols = symbols;
     }
 
-    public DImport() {}
-
-    public void setPackage(final String pack) {
-        _package = pack;
+    public FundamentalType getFundamentalType() {
+        return null;
     }
 
     public String getPackage() {
         return _package;
-    }
-
-    public void setSymbols(final String symbols) {
-        _symbols = symbols;
     }
 
     public String getSymbols() {

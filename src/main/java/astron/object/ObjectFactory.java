@@ -21,6 +21,8 @@ public final class ObjectFactory {
     }
 
     public IDistributedObject requestObject(final int doId, final String name) {
+        return null;
+        /* TODO
         // First, we need to get the DClass
         DClass dclass = _cr.getDcFile().getDClass(name);
 
@@ -65,6 +67,7 @@ public final class ObjectFactory {
         }
 
         return null;
+        */
     }
 
 }

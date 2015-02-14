@@ -1,4 +1,4 @@
-package astron.dc;
+package astron.dc.parser;
 
 import java.util.ArrayList;
 

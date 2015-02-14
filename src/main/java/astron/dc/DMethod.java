@@ -5,30 +5,28 @@ import java.util.ArrayList;
 /**
  * @author chandler14362
  */
-public final class DMethod {
+public final class DMethod extends DType {
 
-    private final String _name;
-    private final int _id;
-    private final ArrayList<DDataTypes> _args = new ArrayList<DDataTypes>();
+    private final ArrayList<DType> _args = new ArrayList<DType>();
 
-    public DMethod(String name, int id) {
-        _name = name;
+    public DMethod(String alias, int id) {
+        _alias = alias;
         _id = id;
     }
 
-    public void addArg(DDataTypes dataType) {
-        _args.add(dataType);
+    public FundamentalType getFundamentalType() {
+        return FundamentalType.METHOD;
     }
 
-    public void addArgs(ArrayList<DDataTypes> dataTypes) {
-        _args.addAll(dataTypes);
+    public void addArg(DType dType) {
+        _args.add(dType);
     }
 
-    public ArrayList<DDataTypes> getArgs() {
+    public ArrayList<DType> getArgs() {
         return _args;
     }
 
-    public DDataTypes getArg(int index) {
+    public DType getArg(int index) {
         return _args.get(index);
     }
 
@@ -37,15 +35,7 @@ public final class DMethod {
     }
 
     public void printInfo() {
-        System.out.println(String.format("---DMethod---\nName: %s\nID: %s\nArgs: %s", _name, _id, _args));
-    }
-
-    public int getId() {
-        return _id;
-    }
-
-    public String getName() {
-        return _name;
+        System.out.println(String.format("---DMethod---\nName: %s\nID: %s\nArgs: %s", _alias, _id, _args));
     }
 
 }

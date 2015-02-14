@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 
-import astron.dc.DDataTypes;
+import astron.dc.FundamentalType;
 
 public class Datagram {
 
@@ -212,10 +212,8 @@ public class Datagram {
         } catch (Exception e) { System.out.println(e.toString()); }
     }
 
-    public static void addDataType(final Datagram datagram, final DDataTypes dataType, final Object value) {
+    public static void addDataType(final Datagram datagram, final FundamentalType dataType, final Object value) {
         switch (dataType) {
-            case BOOL:
-                datagram.addBool((Boolean) value);
             case STRING:
                 datagram.addString((String) value);
             case INT8:

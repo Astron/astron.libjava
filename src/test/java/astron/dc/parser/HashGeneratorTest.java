@@ -1,11 +1,12 @@
-package astron.dc;
+package astron.dc.parser;
 
+import astron.dc.parser.HashGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Tests for the {@link astron.dc.HashGenerator}
+ * Tests for the {@link astron.dc.parser.HashGenerator}
  *
  * @author jjkoletar
  */

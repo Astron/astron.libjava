@@ -1,7 +1,5 @@
 package astron.datagram;
 
-import astron.dc.DDataTypes;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -122,37 +120,6 @@ public class DatagramIterator {
 
     public int getOffset() {
         return _offset;
-    }
-
-    public static Object getDataType(final DatagramIterator datagram, final DDataTypes dataType) {
-        switch (dataType) {
-            case BOOL:
-                return datagram.getBool();
-            case STRING:
-                return datagram.getString();
-            case INT8:
-                return datagram.getInt8();
-            case INT16:
-                return datagram.getInt16();
-            case INT32:
-                return datagram.getInt32();
-            case INT64:
-                return datagram.getInt64();
-            case UINT8:
-                return datagram.getUint8();
-            case UINT16:
-                return datagram.getUint16();
-            case UINT32:
-                return datagram.getUint32();
-            case UINT64:
-                return datagram.getUint64();
-            case FLOAT32:
-                return datagram.getFloat32();
-            case FLOAT64:
-                return datagram.getFloat64();
-            default:
-                return null;
-        }
     }
 
 }

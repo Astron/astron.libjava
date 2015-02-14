@@ -1,13 +1,11 @@
 package astron.client;
 
-import astron.client.ClientState;
 import astron.connection.Connection;
 import astron.connection.MessageTypes;
 import astron.datagram.Datagram;
 import astron.datagram.DatagramIterator;
 import astron.dc.DCFile;
-import astron.dc.DCTokens;
-import astron.dc.DDataTypes;
+import astron.dc.FundamentalType;
 import astron.dc.DMethod;
 import astron.object.IDistributedObject;
 import astron.object.ObjectFactory;
@@ -109,7 +107,7 @@ public class AstronClientRepository extends Connection {
     }
 
     private void handleObjectSetField(final DatagramIterator datagram) {
-
+        /* TODO
         // Get the doId and the fieldId
         int doId = datagram.getDoId();
         int fieldId = datagram.getUint16();
@@ -134,7 +132,7 @@ public class AstronClientRepository extends Connection {
         try {
 
             // Get the Method we need to invoke
-            Method method = dobject.getClass().getMethod(dmethod.getName(), argClasses.toArray(new Class[argClasses.size()]));
+            Method method = dobject.getClass().getMethod(dmethod.getAlias(), argClasses.toArray(new Class[argClasses.size()]));
 
             // Invoke the method
             method.invoke(dobject, args.toArray(new Object[args.size()]));
@@ -152,7 +150,7 @@ public class AstronClientRepository extends Connection {
             e.printStackTrace();
 
         }
-
+        */
     }
 
     public void handleDatagram(final DatagramIterator datagram, final int messageType) {

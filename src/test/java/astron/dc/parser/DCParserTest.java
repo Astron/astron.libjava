@@ -1,18 +1,19 @@
-package astron.dc;
+package astron.dc.parser;
 
+import astron.dc.DCFile;
+import astron.dc.parser.DCLexer;
+import astron.dc.parser.DCParser;
+import astron.dc.parser.DCLoader;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.Test;
-
-import java.io.FileInputStream;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Tests for the {@link astron.dc.DCParser}
+ * Tests for the {@link astron.dc.parser.DCParser}
  *
  * @author chandler14362
  */
