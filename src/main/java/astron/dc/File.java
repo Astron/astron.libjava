@@ -10,7 +10,7 @@ public class File {
     private final ArrayList<Import> _imports = new ArrayList<Import>();
     private final ArrayList<Class> _classes = new ArrayList<Class>();
     private final ArrayList<Struct> _structs = new ArrayList<Struct>();
-    private final KeywordList _keywordList = new KeywordList();
+    private final ArrayList<String> _keywords = new ArrayList<String>();
 
     public File() {}
 
@@ -23,11 +23,15 @@ public class File {
     }
 
     public void addKeyword(final String keyword) {
-        _keywordList.addKeyword(keyword);
+        _keywords.add(keyword);
+    }
+
+    public String getKeyword(final int index) {
+        return _keywords.get(index);
     }
 
     public int getKeywordCount() {
-        return _keywordList.getKeywordCount();
+        return _keywords.size();
     }
 
     public int getHash() {
@@ -47,14 +51,17 @@ public class File {
             struct.generateHash(hashgen);
         }
 
-        _keywordList.generateHash(hashgen);
+        hashgen.addInt(_keywords.size());
+        for (String keyword: _keywords) {
+            hashgen.addString(keyword);
+        }
     }
 
     public void printInfo() {
         for (Import dimport: _imports) {
             System.out.println(dimport.toString());
         }
-        System.out.println(_keywordList.toString());
+        System.out.println(String.format("---Keywords---\n%s", _keywords.toString()));
     }
 
 }

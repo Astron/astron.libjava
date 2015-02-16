@@ -31,11 +31,4 @@ public class KeywordList {
         return String.format("---KeywordList---\n Keywords: %s", _keywords);
     }
 
-    protected void generateHash(HashGenerator hashgen) {
-        hashgen.addInt(_keywords.size());
-        for (String keyword: _keywords) {
-            hashgen.addString(keyword);
-        }
-    }
-
 }
