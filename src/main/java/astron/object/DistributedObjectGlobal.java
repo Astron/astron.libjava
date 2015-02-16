@@ -1,5 +1,6 @@
 package astron.object;
 
-public class DistributedObjectGlobal extends DistributedObject {
-
-}
+/**
+ * @author chandler14362
+ */
+public class DistributedObjectGlobal extends DistributedObject {}

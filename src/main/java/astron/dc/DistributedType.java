@@ -1,16 +1,13 @@
 package astron.dc;
 
-import java.util.Map;
-import java.util.HashMap;
-
 /**
  * A wire-packable Distributed Type
  *
  * @author jjkoletar
  */
-public abstract class DType {
+public abstract class DistributedType {
 
-    public static class InvalidType extends DType {
+    public static class InvalidType extends DistributedType {
         private InvalidType() {}
         public FundamentalType getFundamentalType() {
             return FundamentalType.INVALID;
@@ -19,7 +16,6 @@ public abstract class DType {
     public static final InvalidType INVALID_TYPE = new InvalidType();
 
     protected String _alias = null;
-    protected int _id = -1;
     protected int _size = 0;
 
     /**
@@ -67,29 +63,6 @@ public abstract class DType {
      */
     public void setAlias(final String alias) {
         _alias = alias;
-    }
-
-    /**
-     * Whether or not this DType was assigned an id.
-     * @return {@code true} if this type was assigned an id.
-     */
-    public boolean hasId() {
-        return _id != -1;
-    }
-
-    /**
-     * @return the id of this DType, or {@code -1} if this has no id
-     */
-    public int getId() {
-        return _id;
-    }
-
-    /**
-     * Set the id of this DType
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        _id = id;
     }
 
 }

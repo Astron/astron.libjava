@@ -1,9 +1,6 @@
 package astron.dc.parser;
 
-import astron.dc.parser.DCBaseListener;
-import astron.dc.parser.DCParser;
-import astron.dc.DCFile;
-import astron.dc.DImport;
+import astron.dc.File;
 import org.antlr.v4.runtime.misc.NotNull;
 
 /**
@@ -12,35 +9,24 @@ import org.antlr.v4.runtime.misc.NotNull;
 public class DCLoader extends DCBaseListener {
 
     private ParserData _parserData;
-    private final DCFile _dc = new DCFile();
+    private final File _file;
+
+    public DCLoader(final File file) {
+        _file = file;
+    }
 
     // Imports
 
     public void enterImportDClass(@NotNull DCParser.ImportDClassContext ctx) {
-        _parserData = new ImportData();
-    }
-
-    public void enterImportModule(@NotNull DCParser.ImportModuleContext ctx) {
-        ((ImportData) _parserData).addToPackage(ctx.importAlternatives().getText());
+        _parserData = new ImportData(ctx.importModule().getText());
     }
 
     public void enterImportSymbols(@NotNull DCParser.ImportSymbolsContext ctx) {
         String[] symbols = ctx.getText().split(",");
 
-        for (int i=0; i < symbols.length-1; i++) {
-            String symbol = symbols[i];
-
-            ImportData importData = ((ImportData) _parserData).copy();
-            importData.setSymbols(symbol);
-            _dc.addImport((DImport) importData.construct());
+        for (int i=0; i < symbols.length; i++) {
+            ((ImportData) _parserData).addSymbol(symbols[i]);
         }
-
-        ((ImportData) _parserData).setSymbols(symbols[symbols.length-1]);
-    }
-
-    public void exitImportDClass(@NotNull DCParser.ImportDClassContext ctx) {
-        _dc.addImport((DImport) _parserData.construct());
-        _parserData = null;
     }
 
     // Keywords
@@ -49,17 +35,21 @@ public class DCLoader extends DCBaseListener {
         _parserData = new KeywordData(ctx.IDENTIFIER().toString());
     }
 
-    public void exitKeywordDef(@NotNull DCParser.KeywordDefContext ctx) {
-        _dc.addKeyword(_parserData.construct().getAlias());
-        _parserData = null;
-    }
-
     // Typedefs
 
     public void enterTypedef(@NotNull DCParser.TypedefContext ctx) {}
 
-    public DCFile getDcFile() {
-        return _dc;
+
+    // Construct the _parserData once we exit the statement.
+    public void exitStatement(@NotNull DCParser.StatementContext ctx) {
+        if (_parserData != null) {
+            _parserData.construct(_file);
+            _parserData = null;
+        }
+    }
+
+    public File getFile() {
+        return _file;
     }
 
 }

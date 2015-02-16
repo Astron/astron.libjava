@@ -1,9 +1,6 @@
 package astron.dc.parser;
 
-import astron.dc.DCFile;
-import astron.dc.parser.DCLexer;
-import astron.dc.parser.DCParser;
-import astron.dc.parser.DCLoader;
+import astron.dc.File;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -27,14 +24,17 @@ public class DCParserTest {
         DCParser parser = new DCParser(tokens);
         ParserRuleContext tree = parser.init();
         ParseTreeWalker walker = new ParseTreeWalker();
-        DCLoader loader = new DCLoader();
+
+        File file = new File();
+
+        DCLoader loader = new DCLoader(file);
         walker.walk(loader, tree);
 
-        DCFile dcFile = loader.getDcFile();
-        dcFile.printInfo();
+        file.printInfo();
+        System.out.println(String.format("DC Hash: %s", file.getHash()));
 
-        assertEquals(5, dcFile.getImportCount());
-        assertEquals(2, dcFile.getKeywordCount());
+        assertEquals(4, file.getImportCount());
+        assertEquals(2, file.getKeywordCount());
     }
 
 }

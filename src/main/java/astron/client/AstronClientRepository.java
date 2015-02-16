@@ -4,25 +4,22 @@ import astron.connection.Connection;
 import astron.connection.MessageTypes;
 import astron.datagram.Datagram;
 import astron.datagram.DatagramIterator;
-import astron.dc.DCFile;
-import astron.dc.FundamentalType;
-import astron.dc.DMethod;
+import astron.dc.File;
 import astron.object.IDistributedObject;
 import astron.object.ObjectFactory;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.lang.reflect.Method;
-
+/**
+ * @author chandler14362
+ */
 public class AstronClientRepository extends Connection {
 
     private final String _version;
-    private final DCFile _dcFile;
+    private final File _dcFile;
     private final ObjectFactory _objectFactory;
 
     protected ClientState _clientState = ClientState.CONNECTING;
 
-    public AstronClientRepository(final String address, final int port, final String version, final DCFile dcFile) {
+    public AstronClientRepository(final String address, final int port, final String version, final File dcFile) {
         super(address, port);
 
         _objectFactory = new ObjectFactory(this);
@@ -83,7 +80,7 @@ public class AstronClientRepository extends Connection {
         return _dcFile.getHash();
     }
 
-    public DCFile getDcFile() {
+    public File getDcFile() {
         return _dcFile;
     }
 

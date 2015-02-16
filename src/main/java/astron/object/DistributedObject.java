@@ -1,14 +1,16 @@
 package astron.object;
 
 import astron.client.AstronClientRepository;
-import astron.datagram.Datagram;
-import astron.dc.DClass;
+import astron.dc.Class;
 
+/**
+ * @author chandler14362
+ */
 public class DistributedObject implements IDistributedObject {
 
     private int _doId;
     private AstronClientRepository _cr;
-    private DClass _dclass;
+    private Class _dclass;
 
     /* Constructors */
 
@@ -22,7 +24,7 @@ public class DistributedObject implements IDistributedObject {
         _doId = doId;
     }
 
-    public DistributedObject(final DClass dclass) {
+    public DistributedObject(final Class dclass) {
         _dclass = dclass;
     }
 
@@ -31,17 +33,17 @@ public class DistributedObject implements IDistributedObject {
         _doId = doId;
     }
 
-    public DistributedObject(final AstronClientRepository cr, final DClass dclass) {
+    public DistributedObject(final AstronClientRepository cr, final Class dclass) {
         _cr = cr;
         _dclass = dclass;
     }
 
-    public DistributedObject(final int doId, final DClass dclass) {
+    public DistributedObject(final int doId, final Class dclass) {
         _doId = doId;
         _dclass = dclass;
     }
 
-    public DistributedObject(final AstronClientRepository cr, final int doId, final DClass dclass) {
+    public DistributedObject(final AstronClientRepository cr, final int doId, final Class dclass) {
         _cr = cr;
         _doId = doId;
         _dclass = dclass;
@@ -77,11 +79,11 @@ public class DistributedObject implements IDistributedObject {
         return _cr;
     }
 
-    public void setDClass(final DClass dclass) {
+    public void setDClass(final Class dclass) {
         _dclass = dclass;
     }
 
-    public DClass getDClass() {
+    public Class getDClass() {
         return _dclass;
     }
 

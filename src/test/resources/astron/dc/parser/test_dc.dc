@@ -7,3 +7,5 @@ keyword testKeyword;
 keyword myKeyword;
 
 typedef int8 testTypedef;
+
+dclass DistributedObject {};

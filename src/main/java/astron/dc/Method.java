@@ -3,10 +3,10 @@ package astron.dc;
 /**
  * @author chandler14362
  */
-public final class DClass extends DType {
+public final class Method extends DistributedType {
 
     public FundamentalType getFundamentalType() {
-        return null;
+        return FundamentalType.METHOD;
     }
 
 }

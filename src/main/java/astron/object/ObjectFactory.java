@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import astron.client.AstronClientRepository;
-import astron.dc.DClass;
 
+/**
+ * @author chandler14362
+ */
 public final class ObjectFactory {
 
     private final AstronClientRepository _cr;

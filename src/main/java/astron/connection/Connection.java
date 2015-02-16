@@ -11,6 +11,9 @@ import java.nio.ByteOrder;
 import astron.datagram.Datagram;
 import astron.datagram.DatagramIterator;
 
+/**
+ * @author chandler14362
+ */
 public abstract class Connection implements Runnable {
 
     private final String _address;

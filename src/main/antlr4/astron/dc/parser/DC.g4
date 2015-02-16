@@ -12,7 +12,8 @@ init : statement*
 // - an import statement
 // - a typedef
 // - a keyword declaration
-statement : importDClass
+statement : dclass
+          | importDClass
           | typedef
           | keywordDef
           ;
@@ -37,6 +38,19 @@ importSymbols : importSymbolList
 importSymbolList : importAlternatives
                  | importSymbolList ',' importAlternatives
                  ;
+
+// DClasses
+dclass : KW_DCLASS IDENTIFIER '{' (dclassMethod*)? '}' ';' ;
+
+dclassMethod : IDENTIFIER '(' methodArgList? ')' ';' ;
+
+methodArgList : methodArg 
+              | methodArg ',' methodArgList
+              ;
+
+methodArg : IDENTIFIER
+          | IDENTIFIER IDENTIFIER
+          ;
 
 // Typedefs
 typedef : KW_TYPEDEF nonmethodTypeWithName ';' ;

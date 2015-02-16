@@ -1,8 +1,11 @@
 package astron.object;
 
 import astron.client.AstronClientRepository;
-import astron.dc.DClass;
+import astron.dc.Class;
 
+/**
+ * @author chandler14362
+ */
 public interface IDistributedObject {
 
     public void setDoId(final int doId);
@@ -11,8 +14,8 @@ public interface IDistributedObject {
     public void setCR(final AstronClientRepository cr);
     public AstronClientRepository getCR();
 
-    public void setDClass(final DClass dclass);
-    public DClass getDClass();
+    public void setDClass(final Class dclass);
+    public Class getDClass();
 
     public void sendUpdate(final String fieldName, final Object... args);
     public void sendUpdate(final String fieldName);
